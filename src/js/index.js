@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import Root from './containers/Root';
 import { AppContainer } from "react-hot-loader";
 import configureStore from "./store/configureStore";
+import '../css/normalize.css';
 import '../css/index.css';
 
 const store = configureStore();

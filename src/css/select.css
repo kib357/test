@@ -1,0 +1,38 @@
+.wrapper {
+    position: relative;
+    z-index: 0;
+    padding-right: 16px;
+}
+
+.element {
+    border:none;
+    background-image:none;
+    background-color:transparent;
+    box-shadow: none;
+    outline: none !important;
+
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+
+    font-family: sans-serif;
+    /*font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;*/
+}
+
+.element:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+
+.arrow {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    z-index: -1;
+
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 6px 0 6px;
+    border-color: #ffcd4b transparent transparent transparent;
+}

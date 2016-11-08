@@ -10,7 +10,7 @@ const createFetchMiddleware = config => {
         const [url, options] = $fetch;
         const fetchOptions = Object.assign({}, config.options, options);
 
-        dispatch({ type, state: "REQUEST" });
+        dispatch({ type: type + "_REQUEST" });
 
         let _response;
         fetch(url, fetchOptions)
@@ -23,8 +23,11 @@ const createFetchMiddleware = config => {
                     if (typeof $success === "function") {
                         setTimeout(() => { $success(data) });
                     }
-                    dispatch({ type, state: "RESPONSE", data });
-                    dispatch({ type: type + "_RESPONSE", data });
+                    try {
+                        dispatch({ type: type + "_RESPONSE", data });
+                    } catch (e) {
+                        console.error("Error while dispatching fetch RESPONSE action:", e);
+                    }
                 } else {
                     throw new Error(data || `${_response.statusCode} ${_response.statusText}`);
                 }
@@ -34,8 +37,11 @@ const createFetchMiddleware = config => {
                 if (typeof $error === "function") {
                     setTimeout(() => { $error(error) });
                 }
-                dispatch({ type, state: "ERROR", error });
-                dispatch({ type: type + "_ERROR", error });
+                try {
+                    dispatch({ type: type + "_ERROR", error });
+                } catch (e) {
+                    console.error("Error while dispatching fetch ERROR action:", e);
+                }
             });
     };
 };
