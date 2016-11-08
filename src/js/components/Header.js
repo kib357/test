@@ -1,5 +1,6 @@
 import React from 'react';
 import logoSrc from "../../../public/img/logo.svg";
+import accountIcon from "../../../public/img/account.svg";
 import headerClasses from "../../css/header.css";
 import CurrentCityContainer from "../containers/CurrentCityContainer";
 import NavContainer from "../containers/NavContainer";
@@ -10,7 +11,8 @@ const Header = () => {
             <div className={headerClasses.userBar}>
                 <CurrentCityContainer selectClassName={headerClasses.select} />
                 <div className={headerClasses.signIn}>
-                    Вход
+                    <img src={accountIcon} alt="" />
+                    <span>Вход</span>
                 </div>
             </div>
             <div className={headerClasses.logoAndPhone}>

@@ -19,7 +19,15 @@
 }
 
 .signIn {
+    display: flex;
+    align-items: center;
     padding: 0 9px;
+}
+
+.signIn img {
+    display: inline-block;
+    margin-right: 7px;
+    margin-top: -1px;
 }
 
 .logoAndPhone {
