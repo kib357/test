@@ -1,6 +1,8 @@
 import React from 'react';
-import CurrentCityContainer from "../containers/CurrentCityContainer";
 import logoSrc from "../../../public/img/logo.svg";
+import headerClasses from "../../css/header.css";
+import CurrentCityContainer from "../containers/CurrentCityContainer";
+import NavContainer from "../containers/NavContainer";
 
 const Header = () => {
     return (
@@ -21,7 +23,7 @@ const Header = () => {
                     <a href="tel:88003335577">8 800 333-55-77</a>
                 </div>
             </div>
-
+            <NavContainer />
         </div>
     );
 };

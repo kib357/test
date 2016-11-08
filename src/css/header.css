@@ -55,6 +55,8 @@
     line-height: 30px;
 }
 
-.nav {
-    display: "flex";
+@media screen and (min-width: 481px) {
+    .phoneLink a {
+        font-size: 1.75rem;
+    }
 }
