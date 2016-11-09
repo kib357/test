@@ -1,4 +1,4 @@
-export default function(state = { byParent: {} }, action) {
+export default function(state = { byParent: {}, byId: { '_0': { id: 0 } } }, action) {
     switch (action.type) {
         case 'SUBCATEGORIES_FETCH_REQUEST': {
             const byParent = Object.assign({}, state.byParent);
@@ -8,8 +8,12 @@ export default function(state = { byParent: {} }, action) {
         case 'SUBCATEGORIES_FETCH_RESPONSE': {
             const byParent = Object.assign({}, state.byParent);
             byParent[action.parentId] = action.data;
+            const byId = Object.assign({}, state.byId);
+            for (let c of action.data) {
+                byId['_' + c.id] = c;
+            }
             console.log(typeof action.parentId, byParent);
-            return Object.assign({}, state, { byParent });
+            return Object.assign({}, state, { byParent, byId });
         }
         case 'SUBCATEGORIES_FETCH_ERROR': {
             const byParent = Object.assign({}, state.byParent);

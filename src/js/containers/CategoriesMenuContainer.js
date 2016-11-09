@@ -5,10 +5,11 @@ import CategoriesMenu from '../components/CategoriesMenu';
 
 const CategoriesMenuContainer = connect(
     state => {
-        const items = state.categories.byParent['_' + state.categoriesMenu.currentParentId];
-        console.log('!!!', items);
+        const current = state.categoriesMenu.current;
+        const items = state.categories.byParent['_' + current.id];
         return {
             items,
+            current,
             fetching: items === null,
             error: (typeof items === 'string' ? items : null),
         };

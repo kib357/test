@@ -3,6 +3,19 @@
     min-height: 50px;
 }
 
+.listHeader {
+    display: flex;
+    align-items: center;
+}
+
+.listHeader div img {
+    padding: 16px;
+}
+
+.listHeader span {
+    text-transform: uppercase;
+}
+
 .list {
     list-style: none;
     margin: 0;
@@ -10,6 +23,8 @@
 }
 
 .list li {
+    display: flex;
+    align-items: center;
     margin: 0;
     padding: 0 9px;
     border-bottom: 1px solid #e3dcc1;
@@ -20,9 +35,16 @@
     background-color: #efefef;
 }
 
+.list li img {
+    width: 24px;
+    height: 24px;
+}
+
 .list li span {
-    line-height: 45px;
-        font-weight: 600;
+    flex: 2 0;
+    padding: 11px 0;
+    font-weight: 600;
     width: 100%;
     color: #424242;
+    font-size: 0.875rem;
 }

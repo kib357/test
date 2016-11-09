@@ -6,6 +6,17 @@ import headerClasses from '../../css/header.css';
 import CategoriesMenuContainer from './CategoriesMenuContainer';
 
 class NavMenuContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.closeMenu = this._closeMenu.bind(this);
+    }
+
+    _closeMenu(e) {
+        if (e.target === e.currentTarget) {
+            this.props.toggleMenu(e);
+        }
+    }
+
     render() {
         const {menu} = this.props;
         let component;
@@ -20,11 +31,11 @@ class NavMenuContainer extends Component {
             // case "cart":
             //     break;
             default:
-                component = <p>Похоже, тут ничего нет...</p>;
+                component = <p style={{ padding: '0 9px' }}>Похоже, тут ничего нет...</p>;
                 break;
         }
         return (
-            <div className={headerClasses.navMenuWrapper}>
+            <div className={headerClasses.navMenuWrapper} onClick={this.closeMenu}>
                 <div className={headerClasses.navMenuComponentWrapper}>
                     <div>
                         {component}
