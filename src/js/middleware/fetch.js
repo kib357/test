@@ -1,16 +1,23 @@
 const createFetchMiddleware = config => {
     config = Object.assign({ options: {} }, config);
 
-    return ({ dispatch, getState }) => (next) => (action) => {
+    return ({ dispatch }) => (next) => (action) => {
         const { type, $fetch, $success, $error } = action;
         if (!$fetch) {
             return next(action);
+        }
+        const extra = {};
+        for (let key of Object.keys(action)) {
+            if (['type', '$fetch', '$success', '$error', 'data', 'error'].indexOf(key) >= 0) {
+                continue;
+            }
+            extra[key] = action[key];
         }
 
         const [url, options] = $fetch;
         const fetchOptions = Object.assign({}, config.options, options);
 
-        dispatch({ type: type + "_REQUEST" });
+        dispatch(Object.assign({ type: type + '_REQUEST' }, extra));
 
         let _response;
         fetch(url, fetchOptions)
@@ -20,13 +27,13 @@ const createFetchMiddleware = config => {
             })
             .then(data => {
                 if (_response.ok) {
-                    if (typeof $success === "function") {
+                    if (typeof $success === 'function') {
                         setTimeout(() => { $success(data) });
                     }
                     try {
-                        dispatch({ type: type + "_RESPONSE", data });
+                        dispatch(Object.assign({ type: type + '_RESPONSE', data }, extra));
                     } catch (e) {
-                        console.error("Error while dispatching fetch RESPONSE action:", e);
+                        console.error('Error while dispatching fetch RESPONSE action:', e);
                     }
                 } else {
                     throw new Error(data || `${_response.statusCode} ${_response.statusText}`);
@@ -34,13 +41,13 @@ const createFetchMiddleware = config => {
             })
             .catch(error => {
                 error = error.message || error;
-                if (typeof $error === "function") {
+                if (typeof $error === 'function') {
                     setTimeout(() => { $error(error) });
                 }
                 try {
-                    dispatch({ type: type + "_ERROR", error });
+                    dispatch(Object.assign({ type: type + '_ERROR', error }, extra));
                 } catch (e) {
-                    console.error("Error while dispatching fetch ERROR action:", e);
+                    console.error('Error while dispatching fetch ERROR action:', e);
                 }
             });
     };

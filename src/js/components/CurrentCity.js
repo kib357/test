@@ -6,7 +6,7 @@ const styles = {
         marginLeft: 9,
     },
     hidden: {
-        overflow: "hidden",
+        overflow: 'hidden',
         height: 0,
     },
 };
@@ -24,7 +24,7 @@ class CurrentCity extends Component {
         this.adjustWidth();
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate() {
         this.adjustWidth();
     }
 
@@ -47,7 +47,7 @@ class CurrentCity extends Component {
             <div className={selectClasses.wrapper} style={styles.wrapper}>
                 <select
                     value={currentId} onChange={selectCity}
-                    className={selectClasses.element + " " + (this.props.selectClassName || "")}
+                    className={selectClasses.element + ' ' + (this.props.selectClassName || '')}
                     style={selectStyle}
                     >
                     {
@@ -58,7 +58,7 @@ class CurrentCity extends Component {
                 </select>
                 <div className={selectClasses.arrow}></div>
                 <div style={styles.hidden}>
-                    <span ref="span" className={(this.props.selectClassName || "")}>{currentItem.name}</span>
+                    <span ref="span" className={(this.props.selectClassName || '')}>{currentItem.name}</span>
                 </div>
             </div>
         );

@@ -1,29 +1,36 @@
-const fs = require("fs");
-const path = require("path");
-const webpack = require("webpack");
-const webpackConfig = require("./webpack.config")({ dev: true });
+const fs = require('fs');
+const path = require('path');
+const webpack = require('webpack');
+const webpackConfig = require('./webpack.config')({ dev: true });
 console.log(webpackConfig);
-const webpackDevMiddleware = require("webpack-dev-middleware");
-const webpackHotMiddleware = require("webpack-hot-middleware");
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const compiler = webpack(webpackConfig);
-const app = require("express")();
-app.use(webpackDevMiddleware(compiler, {
+const app = require('express')();
+
+const devMiddleware = webpackDevMiddleware(compiler, {
+  //   noInfo: true,
     publicPath: webpackConfig.output.publicPath,
-}));
+});
+
+app.use(devMiddleware);
 app.use(webpackHotMiddleware(compiler));
 
-app.get("*", (req, res) => {
-    fs.readFile(path.join(compiler.outputPath, "index.html"), (err, file) => {
-        if (err) {
-            res.sendStatus(404);
-        } else {
-            res.send(file.toString());
-        }
-    });
+app.get('*', (req, res) => {
+    const reqPath = req.url;
+  // find the file that the browser is looking for
+    const reqPathArray = reqPath.split('/');
+    const file = reqPathArray[reqPathArray.length - 1];
+    if (['bundle.js', 'index.html'].indexOf(file) !== -1) {
+      res.end(devMiddleware.fileSystem.readFileSync(path.join(webpackConfig.output.path, file)));
+  } else if (file.indexOf('.') === -1) {
+    // if the url does not have an extension, assume they've navigated to something like /home and want index.html
+      res.end(devMiddleware.fileSystem.readFileSync(path.join(webpackConfig.output.path, 'index.html')));
+  }
 });
 
 app.listen(3001, (err) => {
     if (err) {
-        return console.error(err.message);
-    }
+      return console.error(err.message);
+  }
 });

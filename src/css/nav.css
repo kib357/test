@@ -10,10 +10,11 @@
     align-items: center;
     padding: 10px;
     color: #424242;
+    cursor: pointer;
 }
 
 .wrapper > div.active {
-    background-color: #f6e17b;
+    background-color: #ffcd4b; /*#f6e17b;*/
 }
 
 .wrapper > div > img {

@@ -1,13 +1,18 @@
 import React from 'react';
-import logoSrc from "../../../public/img/logo.svg";
-import accountIcon from "../../../public/img/account.svg";
-import headerClasses from "../../css/header.css";
-import CurrentCityContainer from "../containers/CurrentCityContainer";
-import NavContainer from "../containers/NavContainer";
+import cl from 'classnames';
+import logoSrc from '../../../public/img/logo.svg';
+import accountIcon from '../../../public/img/account.svg';
+import headerClasses from '../../css/header.css';
+import CurrentCityContainer from '../containers/CurrentCityContainer';
+import NavContainer from '../containers/NavContainer';
+import NavMenuContainer from '../containers/NavMenuContainer';
 
-const Header = () => {
+const Header = ({menu}) => {
+    const wrapperClassName = {};
+    wrapperClassName[headerClasses.wrapper] = true;
+    wrapperClassName[headerClasses.fixed] = !!menu;
     return (
-        <div>
+        <div className={cl(wrapperClassName)}>
             <div className={headerClasses.userBar}>
                 <CurrentCityContainer selectClassName={headerClasses.select} />
                 <div className={headerClasses.signIn}>
@@ -26,6 +31,7 @@ const Header = () => {
                 </div>
             </div>
             <NavContainer />
+            {menu && <NavMenuContainer />}
         </div>
     );
 };

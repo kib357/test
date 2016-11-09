@@ -1,3 +1,27 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper.fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.navMenuWrapper {
+    flex: 2 0;
+    overflow: auto;
+    background-color: rgba(0,0,0,.53);
+}
+
+.navMenuComponentWrapper {
+    background-color: #fff;
+    padding: 1px 9px;
+}
+
 .userBar {
     display: flex;
     justify-content: space-between;

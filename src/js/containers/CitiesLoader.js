@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import * as CitiesActions from "../actions/CitiesActions";
-import Loader from "../components/Loader";
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as CitiesActions from '../actions/CitiesActions';
+import Loader from '../components/Loader';
 
 class CitiesLoader extends Component {
     componentDidMount() {

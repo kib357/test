@@ -1,28 +1,28 @@
-import React from "react";
+import React from 'react';
 
 const styles = {
     wrapper: {
-        position: "fixed",
+        position: 'fixed',
         top: 0,
         right: 0,
         bottom: 0,
         left: 0,
     },
     progress: {
-        position: "absolute",
-        top: "50%",
-        left: "50%",
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
         margin: 0,
-        transform: "translate(-50%, -50%)",
-        textAlign: "center",
+        transform: 'translate(-50%, -50%)',
+        textAlign: 'center',
     },
     text: {
-        fontSize: ".9rem",
-        textTransform: "uppercase",
-        marginTop: "24px",
+        fontSize: '.9rem',
+        textTransform: 'uppercase',
+        // marginTop: "24px",
     },
     children: {
-        marginTop: "24px",
+        marginTop: '24px',
     },
 };
 
@@ -31,7 +31,7 @@ const Loader = ({style, text, children}) => {
     return (
         <div style={wrapperStyle}>
             <div style={styles.progress}>
-                <p style={styles.text}>{text || "Загрузка..."}</p>
+                <p style={styles.text}>{text || 'Загрузка...'}</p>
                 {children && <div style={styles.children}>
                     {children}
                 </div>}

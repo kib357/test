@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import favicon from "../../../public/img/favicon.ico";
-import Helmet from "../containers/Helmet";
-import CitiesLoader from "../containers/CitiesLoader";
-import Header from "./Header";
+import favicon from '../../../public/img/favicon.ico';
+import Helmet from '../containers/Helmet';
+import CitiesLoader from '../containers/CitiesLoader';
+import HeaderContainer from '../containers/HeaderContainer';
 
 class App extends Component {
     render() {
@@ -11,7 +11,7 @@ class App extends Component {
                 <Helmet link={[{ rel: 'Shortcut Icon', href: favicon }]} />
                 <CitiesLoader>
                     <div>
-                        <Header />
+                        <HeaderContainer />
                     </div>
                 </CitiesLoader>
             </div>
