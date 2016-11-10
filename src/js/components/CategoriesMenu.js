@@ -7,10 +7,14 @@ import componentClasses from '../../css/categoriesMenu.css';
 const styles = {
     loader: {
         position: 'absolute',
+        opacity: 0,
+        bottom: '100%',
+        overflow: 'hidden',
     },
-    wrapperShow: {
-        transform: 'translateX(0)',
-        transition: 'transform .15s ease-out',
+    loaderShow: {
+        bottom: 0,
+        opacity: 1,
+        transition: 'opacity .5s linear',
     },
     error: {
         padding: '0 14px',
@@ -67,14 +71,13 @@ class CategoriesMenu extends Component {
             return <p style={styles.error}>Ошибка при загрузке категорий, пожалуйста обновите страницу.</p>;
         }
         return (
-            <div
-                className={componentClasses.wrapper}
-                style={(fetching || this.state.hide) ? slideStyle : styles.wrapperShow}
-                >
-                {
-                    fetching ?
-                        <Loader style={styles.loader} />
-                        :
+            <div className={componentClasses.wrapper} >
+                <Loader style={Object.assign({}, styles.loader, fetching ? styles.loaderShow : null)} fade={true} />
+                <div
+                    className={componentClasses.content}
+                    style={(fetching || this.state.hide) ? slideStyle : { transition: 'transform .15s ease-out' }}
+                    >
+                    {!fetching &&
                         <div>
                             {current.id !== 0 &&
                                 <div className={componentClasses.listHeader}>
@@ -109,7 +112,8 @@ class CategoriesMenu extends Component {
                                 </ul>
                             }
                         </div>
-                }
+                    }
+                </div>
             </div>
         );
     }
