@@ -16,3 +16,18 @@ export const selectMenuCategory = (id) => {
         dispatch({ type: 'CATEGORIES_MENU_SELECT', category });
     };
 };
+
+export const openCategory = (id) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const city = state.cities.list.find(city => city.id === state.cities.currentId);
+        const categories = state.categories.byId;
+        let c = categories['_' + id];
+        let path = '';
+        while (c != null && c.parent_id) {
+            path = `${c.uri_name}/${path}`;
+            c = categories['_' + c.parent_id];
+        }
+        history.pushState({}, '', '/' + city.uri_name + '/' + path);
+    };
+};

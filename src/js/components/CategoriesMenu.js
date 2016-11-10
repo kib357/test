@@ -50,7 +50,7 @@ class CategoriesMenu extends Component {
         const back = e.currentTarget.getAttribute('data-back');
         const isLeaf = e.currentTarget.getAttribute('data-leaf');
         if (isLeaf) {
-            (() => { })();
+            this.props.openCategory(id);
         } else {
             const hide = true;
             this.setState({ back, hide }, () => {
