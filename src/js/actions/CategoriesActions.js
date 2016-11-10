@@ -1,4 +1,5 @@
 import { CATALOG_API_URI } from '../const';
+import history from '../services/history';
 
 export const fetchSubCategories = (parentId = 0) => ({
     type: 'SUBCATEGORIES_FETCH',
@@ -10,7 +11,6 @@ export const fetchSubCategories = (parentId = 0) => ({
 
 export const selectMenuCategory = (id) => {
     return (dispatch, getState) => {
-        console.log('!!!', id);
         const categories = getState().categories;
         const category = categories.byId['_' + id];
         dispatch({ type: 'CATEGORIES_MENU_SELECT', category });
@@ -28,6 +28,6 @@ export const openCategory = (id) => {
             path = `${c.uri_name}/${path}`;
             c = categories['_' + c.parent_id];
         }
-        history.pushState({}, '', '/' + city.uri_name + '/' + path);
+        history.push(`/${city.uri_name}/catalog/${path}`);
     };
 };

@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HOT_SERVER_URL = '/';// "http://localhost:3001/";
 const devEntries = [
     'react-hot-loader/patch',
-    `webpack-hot-middleware/client?path=${HOT_SERVER_URL}__webpack_hmr`,
+    `webpack-hot-middleware/client?path=${HOT_SERVER_URL}__webpack_hmr&reload=true`,
 ];
 const devPlugins = [
     new webpack.HotModuleReplacementPlugin(),
