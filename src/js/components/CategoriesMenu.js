@@ -8,11 +8,20 @@ const styles = {
     loader: {
         position: 'absolute',
     },
+    wrapperShow: {
+        transform: 'translateX(0)',
+        transition: 'transform .15s ease-out',
+    },
+    error: {
+        padding: '0 14px',
+        color: '#F44336',
+    },
 };
 
 class CategoriesMenu extends Component {
     constructor(props) {
         super(props);
+        this.state = { back: false };
         this.categoryClickHandler = this._categoryClickHandler.bind(this);
     }
 
@@ -22,6 +31,11 @@ class CategoriesMenu extends Component {
 
     componentDidUpdate() {
         this._fetchItemsIfNeed();
+        if (this.state.hide) {
+            setTimeout(() => {
+                this.setState({ hide: false });
+            });
+        }
     }
 
     _fetchItemsIfNeed() {
@@ -33,21 +47,30 @@ class CategoriesMenu extends Component {
 
     _categoryClickHandler(e) {
         const id = e.currentTarget.getAttribute('data-cat-id');
+        const back = e.currentTarget.getAttribute('data-back');
         const isLeaf = e.currentTarget.getAttribute('data-leaf');
         if (isLeaf) {
             (() => { })();
         } else {
-            this.props.selectMenuCategory(id);
+            const hide = true;
+            this.setState({ back, hide }, () => {
+                this.props.selectMenuCategory(id);
+            });
         }
     }
 
     render() {
         const {items, current, fetching, error} = this.props;
+        const slideStyle = {};
+        slideStyle['transform'] = `translateX(${this.state.back ? '-' : ''}24px)`;
         if (error) {
-            return <p>{error}</p>;
+            return <p style={styles.error}>Ошибка при загрузке категорий, пожалуйста обновите страницу.</p>;
         }
         return (
-            <div className={componentClasses.wrapper}>
+            <div
+                className={componentClasses.wrapper}
+                style={(fetching || this.state.hide) ? slideStyle : styles.wrapperShow}
+                >
                 {
                     fetching ?
                         <Loader style={styles.loader} />
@@ -56,7 +79,8 @@ class CategoriesMenu extends Component {
                             {current.id !== 0 &&
                                 <div className={componentClasses.listHeader}>
                                     <div
-                                        onClick={this.categoryClickHandler}
+                                        onTouchTap={this.categoryClickHandler}
+                                        data-back={true}
                                         data-cat-id={current.parent_id}
                                         >
                                         <img src={backIcon} />
@@ -64,19 +88,26 @@ class CategoriesMenu extends Component {
                                     <span>{current.name}</span>
                                 </div>
                             }
-                            <ul className={componentClasses.list}>
-                                {
-                                    (items || []).map((e, i) => (
-                                        <li key={i}
-                                            onClick={this.categoryClickHandler}
-                                            data-cat-id={e.id}
-                                            data-leaf={e.is_leaf_category}>
-                                            <span>{e.name}</span>
-                                            {e.is_leaf_category ? null : <img src={arrowIcon} />}
-                                        </li>
-                                    ))
-                                }
-                            </ul>
+                            {items &&
+                                <ul className={componentClasses.list}>
+                                    {
+                                        items.length === 0 ?
+                                            <li className={componentClasses.emptyLi}>
+                                                <span>В этой категории ничего нет</span>
+                                            </li>
+                                            :
+                                            items.map((e, i) => (
+                                                <li key={i}
+                                                    onTouchTap={this.categoryClickHandler}
+                                                    data-cat-id={e.id}
+                                                    data-leaf={e.is_leaf_category}>
+                                                    <span>{e.name}</span>
+                                                    {e.is_leaf_category ? null : <img src={arrowIcon} />}
+                                                </li>
+                                            ))
+                                    }
+                                </ul>
+                            }
                         </div>
                 }
             </div>

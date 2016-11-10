@@ -18,7 +18,7 @@ const Nav = ({menu, toggleMenu}) => {
             {
                 items.map((e, i) => (
                     <div key={i}
-                        onClick={toggleMenu}
+                        onTouchTap={toggleMenu}
                         data-menu={e.value}
                         className={e.value === menu ? navClasses.active : ''}
                         >

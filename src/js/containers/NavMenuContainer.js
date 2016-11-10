@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as NavActions from '../actions/NavActions';
 import headerClasses from '../../css/header.css';
 import CategoriesMenuContainer from './CategoriesMenuContainer';
+import SearchMenuContainer from './SearchMenuContainer';
 
 class NavMenuContainer extends Component {
     constructor(props) {
@@ -24,8 +25,9 @@ class NavMenuContainer extends Component {
             case 'categories':
                 component = <CategoriesMenuContainer />;
                 break;
-            // case "search":
-            //     break;
+            case 'search':
+                component = <SearchMenuContainer />;
+                break;
             // case "info":
             //     break;
             // case "cart":
@@ -35,7 +37,7 @@ class NavMenuContainer extends Component {
                 break;
         }
         return (
-            <div className={headerClasses.navMenuWrapper} onClick={this.closeMenu}>
+            <div className={headerClasses.navMenuWrapper} onTouchTap={this.closeMenu}>
                 <div className={headerClasses.navMenuComponentWrapper}>
                     <div>
                         {component}

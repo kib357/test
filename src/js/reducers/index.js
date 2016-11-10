@@ -4,6 +4,7 @@ import cities from './cities';
 import nav from './nav';
 import categories from './categories';
 import categoriesMenu from './categoriesMenu';
+import searchMenu from './searchMenu';
 
 const rootReducer = combineReducers({
     helmet,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     nav,
     categories,
     categoriesMenu,
+    searchMenu,
 });
 
 export default rootReducer;
