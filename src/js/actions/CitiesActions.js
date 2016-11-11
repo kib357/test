@@ -20,13 +20,10 @@ export const fetchCities = () => {
     };
 };
 
-export const selectCity = (e) => {
-    return (dispatch) => {
-        const id = e.target.value * 1;
-        localStorage.setItem(CITY_LS_KEY, id);
-        dispatch({
-            type: 'CITIES_SELECT',
-            id,
-        });
+export const selectCity = (id) => {
+    localStorage.setItem(CITY_LS_KEY, id);
+    return {
+        type: 'CITIES_SELECT',
+        id,
     };
 };

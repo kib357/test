@@ -1,9 +1,9 @@
 import React from 'react';
 
-const StaticPage = () => {
+const StaticPage = ({page}) => {
     return (
         <div>
-            StaticPage
+            StaticPage - {page}
         </div>
     );
 };

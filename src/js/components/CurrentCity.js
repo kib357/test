@@ -18,6 +18,7 @@ class CurrentCity extends Component {
             selectWidth: 0,
         };
         this.adjustWidth = this.adjustWidth.bind(this);
+        this.selectChangeHandler = this._selectChangeHandler.bind(this);
     }
 
     componentDidMount() {
@@ -39,14 +40,20 @@ class CurrentCity extends Component {
         }
     }
 
+    _selectChangeHandler(e) {
+        const id = e.target.value * 1;
+        this.props.selectCity(id);
+    }
+
     render() {
-        const {list = [], currentId, selectCity} = this.props;
+        const {list = [], currentId } = this.props;
         const selectStyle = { width: this.state.selectWidth };
         const currentItem = list.find(i => i.id === currentId) || list[0];
         return (
             <div className={selectClasses.wrapper} style={styles.wrapper}>
                 <select
-                    value={currentId} onChange={selectCity}
+                    value={currentId}
+                    onChange={this.selectChangeHandler}
                     className={selectClasses.element + ' ' + (this.props.selectClassName || '')}
                     style={selectStyle}
                     >

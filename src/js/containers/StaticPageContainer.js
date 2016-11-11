@@ -4,7 +4,7 @@ import * as NavActions from '../actions/NavActions';
 import StaticPage from '../components/StaticPage';
 
 const StaticPageContainer = connect(
-    state => state,
+    state => state.nav,
     dispatch => (bindActionCreators(NavActions, dispatch))
 )(StaticPage);
 
