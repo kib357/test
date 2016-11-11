@@ -3,7 +3,7 @@ export default function(state = { menu: '', page: '', path: '' }, action) {
         case 'NAV_TOGGLE_MENU': {
             const menu = state.menu === action.menu ? '' : action.menu;
             //Very bad place to do this, but its simplest
-            applyBodyStyle();
+            applyBodyStyle(!!menu);
             return Object.assign({}, state, { menu });
         }
         case 'NAV_OPEN_PAGE': {

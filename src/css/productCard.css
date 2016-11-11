@@ -27,21 +27,33 @@
     padding: 16px 16px 0 16px;
 }
 
+.price {
+    padding: 8px 16px;
+    letter-spacing: .5px;
+}
+
 .primaryText {
-    margin: 0;
+    margin: 0 0 8px 0;
     padding: 0;
     font-size: .85rem;
     font-weight: 600;
     color: #212121;
 }
 
+.sum {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #F57C00;
+}
+
 .secondaryText {
+    font-size: .7rem;
     color: rgba(0,0,0,.54);
 }
 
 .actions {
     display: flex;
-    padding: 8px 8px 8px 0;
+    padding: 8px 16px 8px 8px;
 }
 
 .countBtn {

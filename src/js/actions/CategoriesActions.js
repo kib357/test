@@ -20,7 +20,7 @@ export const selectMenuCategory = (id) => {
 export const openCategory = (id) => {
     return (dispatch, getState) => {
         const state = getState();
-        const city = state.cities.list.find(city => city.id === state.cities.currentId);
+        const city = state.cities.current;
         const categories = state.categories.byId;
         let c = categories['_' + id];
         let path = '';

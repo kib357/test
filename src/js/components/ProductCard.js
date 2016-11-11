@@ -7,7 +7,7 @@ import formsClasses from '../../css/forms.css';
 class ProductCard extends Component {
     constructor(props) {
         super(props);
-        this.state = { count: 1 };
+        this.state = { count: 1, unitIndex: 0 };
         this.countChangeHandler = this._countChangeHandler.bind(this);
         this.countDecHandler = this._countDecHandler.bind(this);
         this.countIncHandler = this._countIncHandler.bind(this);
@@ -29,7 +29,8 @@ class ProductCard extends Component {
     }
 
     render() {
-        const {name, erp_id} = this.props;
+        const {name, erp_id, unit_prices} = this.props;
+        const {weight: uWeight, price: uPrice, name: uName} = (unit_prices[this.state.unitIndex] || {});
         return (
             <div className={componentClasses.wrapper}>
                 <div className={componentClasses.content}>
@@ -39,6 +40,14 @@ class ProductCard extends Component {
                     <div className={componentClasses.media}>
                         <img src={`http://images.sdvor.com/sdvorcom/130x130/0/${erp_id}.jpg`} />
                     </div>
+                </div>
+                <div className={componentClasses.price}>
+                    <span className={componentClasses.sum}>
+                        {(uPrice * this.state.count || '–') + '\u00A0\u20BD\u00A0'}
+                    </span>
+                    <span className={componentClasses.secondaryText}>
+                        {(this.state.count > 1) && `(${uPrice}\u00A0\u20BD x ${this.state.count})`}
+                    </span>
                 </div>
                 <div className={componentClasses.actions}>
                     <button
@@ -50,7 +59,7 @@ class ProductCard extends Component {
                     </button>
                     <input
                         type="text"
-                        pattern="\\d*"
+                        pattern="\d*"
                         value={this.state.count}
                         onChange={this.countChangeHandler}
                         className={formsClasses.textInput + ' ' + componentClasses.countInput}

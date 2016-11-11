@@ -1,4 +1,5 @@
 import { CATALOG_API_URI } from '../const';
+import history from '../services/history';
 
 export const fetchCategory = () => {
     return (dispatch, getState) => {
@@ -37,5 +38,13 @@ export const fetchItems = () => {
                 method: 'GET',
             }],
         });
+    };
+};
+
+export const openCategory = (path) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const city = state.cities.current;
+        history.push(`/${city.uri_name}/catalog${path}`);
     };
 };
