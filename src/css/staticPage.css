@@ -1,0 +1,25 @@
+.wrapper {
+    padding: 14px;
+}
+
+.content {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px rgba(17, 17, 17, 0.1), 0 0 0 1px rgba(17, 17, 17, 0.1);
+}
+
+.content h2 {
+    margin: 0 0 20px 0;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.content img {
+    max-width: 100%;
+}
+
+.error {
+    padding: 0 14px;
+    color: #F44336;
+}

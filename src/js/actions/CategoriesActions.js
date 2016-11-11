@@ -29,5 +29,8 @@ export const openCategory = (id) => {
             c = categories['_' + c.parent_id];
         }
         history.push(`/${city.uri_name}/catalog/${path}`);
+        dispatch({
+            type: 'NAV_TOGGLE_MENU',
+        });
     };
 };

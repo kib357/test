@@ -1,18 +1,18 @@
 import { API_URI, CITY_LS_KEY } from '../const';
 
 export const fetchCities = () => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch({
             type: 'CITIES_FETCH',
             $fetch: [`${API_URI}/cities/`, {
                 method: 'GET',
             }],
             $success: () => {
-                const savedId = localStorage.getItem(CITY_LS_KEY);
-                if (savedId) {
+                let savedId = localStorage.getItem(CITY_LS_KEY) * 1;
+                if (savedId && savedId !== getState().cities.currentId) {
                     dispatch({
                         type: 'CITIES_SELECT',
-                        id: savedId * 1,
+                        id: savedId,
                     });
                 }
             },

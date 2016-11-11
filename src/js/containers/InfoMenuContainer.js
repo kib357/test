@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as StaticPageActions from '../actions/StaticPageActions';
-import StaticPage from '../components/StaticPage';
+import InfoMenu from '../components/InfoMenu';
 
-const StaticPageContainer = connect(
-    state => state.staticPage,
+const InfoMenuContainer = connect(
+    () => ({}),
     dispatch => (bindActionCreators(StaticPageActions, dispatch))
-)(StaticPage);
+)(InfoMenu);
 
-export default StaticPageContainer;
+export default InfoMenuContainer;

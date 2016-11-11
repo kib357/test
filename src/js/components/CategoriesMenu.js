@@ -3,6 +3,7 @@ import backIcon from '../../../public/img/back.svg';
 import arrowIcon from '../../../public/img/chevron_right.svg';
 import Loader from '../components/Loader';
 import componentClasses from '../../css/categoriesMenu.css';
+import navListClasses from '../../css/navList.css';
 
 const styles = {
     loader: {
@@ -72,7 +73,7 @@ class CategoriesMenu extends Component {
         }
         return (
             <div className={componentClasses.wrapper} >
-                <Loader style={Object.assign({}, styles.loader, fetching ? styles.loaderShow : null)} fade={true} />
+                <Loader style={Object.assign({}, styles.loader, fetching ? styles.loaderShow : null)} />
                 <div
                     className={componentClasses.content}
                     style={(fetching || this.state.hide) ? slideStyle : { transition: 'transform .15s ease-out' }}
@@ -80,7 +81,7 @@ class CategoriesMenu extends Component {
                     {!fetching &&
                         <div>
                             {current.id !== 0 &&
-                                <div className={componentClasses.listHeader}>
+                                <div className={navListClasses.listHeader}>
                                     <div
                                         onTouchTap={this.categoryClickHandler}
                                         data-back={true}
@@ -92,10 +93,10 @@ class CategoriesMenu extends Component {
                                 </div>
                             }
                             {items &&
-                                <ul className={componentClasses.list}>
+                                <ul className={navListClasses.list}>
                                     {
                                         items.length === 0 ?
-                                            <li className={componentClasses.emptyLi}>
+                                            <li className={navListClasses.emptyLi}>
                                                 <span>В этой категории ничего нет</span>
                                             </li>
                                             :

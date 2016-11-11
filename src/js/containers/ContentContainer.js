@@ -13,6 +13,8 @@ class ContentContainer extends Component {
 
     render() {
         const {page} = this.props;
+        if (!page) { return null }
+
         let component;
         switch (page) {
             case 'catalog':

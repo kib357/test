@@ -5,6 +5,7 @@ import * as NavActions from '../actions/NavActions';
 import headerClasses from '../../css/header.css';
 import CategoriesMenuContainer from './CategoriesMenuContainer';
 import SearchMenuContainer from './SearchMenuContainer';
+import InfoMenuContainer from './InfoMenuContainer';
 
 class NavMenuContainer extends Component {
     constructor(props) {
@@ -28,8 +29,9 @@ class NavMenuContainer extends Component {
             case 'search':
                 component = <SearchMenuContainer />;
                 break;
-            // case "info":
-            //     break;
+            case 'info':
+                component = <InfoMenuContainer />;
+                break;
             // case "cart":
             //     break;
             default:
