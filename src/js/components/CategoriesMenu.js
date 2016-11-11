@@ -6,17 +6,6 @@ import componentClasses from '../../css/categoriesMenu.css';
 import navListClasses from '../../css/navList.css';
 
 const styles = {
-    loader: {
-        position: 'absolute',
-        opacity: 0,
-        bottom: '100%',
-        overflow: 'hidden',
-    },
-    loaderShow: {
-        bottom: 0,
-        opacity: 1,
-        transition: 'opacity .5s linear',
-    },
     error: {
         padding: '0 14px',
         color: '#F44336',
@@ -73,7 +62,7 @@ class CategoriesMenu extends Component {
         }
         return (
             <div className={componentClasses.wrapper} >
-                <Loader style={Object.assign({}, styles.loader, fetching ? styles.loaderShow : null)} />
+                <Loader position="absolute" hide={!fetching}/>
                 <div
                     className={componentClasses.content}
                     style={(fetching || this.state.hide) ? slideStyle : { transition: 'transform .15s ease-out' }}

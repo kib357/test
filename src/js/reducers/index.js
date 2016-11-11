@@ -6,6 +6,7 @@ import categories from './categories';
 import categoriesMenu from './categoriesMenu';
 import searchMenu from './searchMenu';
 import staticPage from './staticPage';
+import catalog from './catalog';
 
 const rootReducer = combineReducers({
     helmet,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     categoriesMenu,
     searchMenu,
     staticPage,
+    catalog,
 });
 
 export default rootReducer;

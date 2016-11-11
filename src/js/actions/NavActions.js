@@ -29,6 +29,7 @@ export const applyPath = (path) => {
         dispatch({
             type: 'NAV_OPEN_PAGE',
             page,
+            path,
         });
     };
 };

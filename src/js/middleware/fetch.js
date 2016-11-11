@@ -33,10 +33,13 @@ const createFetchMiddleware = config => {
                     try {
                         dispatch(Object.assign({ type: type + '_RESPONSE', data }, extra));
                     } catch (e) {
-                        console.error('Error while dispatching fetch RESPONSE action:', e);
+                        console.error(`Error while dispatching ${type}_RESPONSE action:`, e);
                     }
                 } else {
-                    throw new Error(data || `${_response.statusCode} ${_response.statusText}`);
+                    console.log(_response);
+                    const e = new Error(`${_response.status} ${_response.statusText}`);
+                    e.data = data;
+                    throw e;
                 }
             })
             .catch(error => {
