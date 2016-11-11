@@ -1,6 +1,7 @@
 .wrapper {
     display: flex;
     border-bottom: 3px solid #ffcd4b;
+    background-color: #fff;
 }
 
 .wrapper > div {

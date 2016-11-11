@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Loader from './Loader';
 import componentClasses from '../../css/catalog.css';
+import ProductCard from './ProductCard';
 
 class Catalog extends Component {
     componentDidMount() {
@@ -32,11 +33,11 @@ class Catalog extends Component {
         return (
             <div className={componentClasses.wrapper}>
                 <Loader position="relative" hide={!fetchingCategory && !fetchingItems} />
-                {items && items.products && <ul>
+                {items && items.products && <div>
                     {
-                        items.products.map(p => <li>{p.name}</li>)
+                        items.products.map((p, i) => (<ProductCard key={i} {...p} />))
                     }
-                </ul>}
+                </div>}
             </div>
         );
     }

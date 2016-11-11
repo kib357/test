@@ -7,7 +7,7 @@ import '../css/normalize.css';
 import '../css/index.css';
 
 // Mobile debug only
-// window.onerror = function(message, url, lineNumber) {
+// window.onerror = function (message, url, lineNumber) {
 //     document.body.innerHTML = message;
 // };
 
