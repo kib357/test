@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as NavActions from '../actions/NavActions';
 import CatalogContainer from './CatalogContainer';
 import OrderContainer from './OrderContainer';
+import ProductContainer from './ProductContainer';
 import StaticPageContainer from './StaticPageContainer';
 
 class ContentContainer extends Component {
@@ -22,6 +23,9 @@ class ContentContainer extends Component {
                 break;
             case 'order':
                 component = <OrderContainer />;
+                break;
+            case 'product':
+                component = <ProductContainer />;
                 break;
             default:
                 component = <StaticPageContainer />;

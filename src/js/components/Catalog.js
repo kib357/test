@@ -50,8 +50,8 @@ class Catalog extends Component {
     }
 
     _productClickHandler(e) {
-        const id = e.currentTarget.getAttribute('data-id');
-        this.props.openProduct(id);
+        const uri = e.currentTarget.getAttribute('data-uri');
+        this.props.openProduct(uri);
     }
 
     render() {

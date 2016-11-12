@@ -17,10 +17,17 @@ class ProductCard extends Component {
         this.unitsClickHandler = this._unitsClickHandler.bind(this);
     }
 
+    _cutCount(_count) {
+        const {count_pallet, stock, unit_prices = []} = this.props;
+        const isPalette = (unit_prices[this.state.unitsIndex] || {}).id === 'PAL';
+        const max = Math.ceil(isPalette ? stock / count_pallet : stock);
+        return Math.min(max, _count);
+    }
+
     _countChangeHandler(e) {
         const v = e.target.value.replace(/\D/g, '') * 1;
         if (Number.isFinite(v)) {
-            this.setState({ count: v });
+            this.setState({ count: this._cutCount(v) });
         }
     }
 
@@ -35,7 +42,7 @@ class ProductCard extends Component {
     }
 
     _countIncHandler() {
-        this.setState({ count: this.state.count + 1 });
+        this.setState({ count: this._cutCount(this.state.count + 1) });
     }
 
     _byClickHandler() {
@@ -48,20 +55,22 @@ class ProductCard extends Component {
     }
 
     render() {
-        const {name, erp_id, unit_prices = []} = this.props;
+        const {name, erp_id, uri_name, count_pallet, stock, unit_prices = [], onClick} = this.props;
         const {unitsIndex, count} = this.state;
         const {weight: uWeight, price: uPrice, volume: uVolume} = unit_prices[unitsIndex] || {};
         return (
             <div className={componentClasses.wrapper}>
-                <div className={componentClasses.header}>
+                <div className={componentClasses.header} onTouchTap={onClick} data-uri={uri_name}>
                     <h3 className={componentClasses.primaryText}>{name}</h3>
                 </div>
                 <div className={componentClasses.content}>
-                    <div className={componentClasses.media}>
+                    <div className={componentClasses.media} onTouchTap={onClick} data-uri={uri_name}>
                         <img src={`http://images.sdvor.com/sdvorcom/130x130/0/${erp_id}.jpg`} />
                     </div>
                     <div className={componentClasses.text}>
                         <div className={componentClasses.secondaryText}>
+                            {stock && <span>Остаток: {stock}<br /></span>}
+                            {count_pallet && <span>В поддоне: {count_pallet}<br /></span>}
                             {uWeight && <span>Вес: {uWeight + ' '}кг<br /></span>}
                             {uVolume && <span>Объем: {uVolume + ' '}м<sup>3</sup><br /></span>}
                         </div>

@@ -49,3 +49,11 @@ export const openCategory = (path) => {
         history.push(`/${city.uri_name}/catalog${path}`);
     };
 };
+
+export const openProduct = (path) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const city = state.cities.current;
+        history.push(`/${city.uri_name}/product/${path}`);
+    };
+};
