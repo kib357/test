@@ -1,0 +1,22 @@
+.linksWrapper {
+    padding: 11px 0 7px 0;
+}
+
+.linksWrapper a {
+    color: rgba(0,0,0,.54) !important;
+    text-decoration: none;
+
+    /*colored*/
+    display: inline-block;
+    padding: 7px 14px;
+    /*background-color: #ffcd4b;*/
+    border: 1px solid #ffcd4b;
+    color: rgba(0,0,0,.87) !important;
+    border-radius: 2;
+}
+
+.header {
+    font-size: 1.3rem;
+    margin: 24px 0;
+    color: rgba(0,0,0,.87);
+}

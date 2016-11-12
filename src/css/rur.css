@@ -1,0 +1,20 @@
+@font-face {
+    font-family: "Rubl Sign";
+    src: url('http://www.sdvor.com/assets/frontend/old/ruble/ruble.ttf');
+}
+.rur {
+    font-family: "Rubl Sign";
+    text-transform: uppercase;
+}
+.rur span {
+    position: absolute;
+    overflow: hidden;
+    width: .45em;
+    height: 1em;
+    margin: .1ex 0 0 -.55em;
+    display: none;
+}
+
+.rur span:before {
+    content: '\2013';
+}

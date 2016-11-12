@@ -3,6 +3,7 @@ import removeIcon from '../../../public/img/remove.svg';
 import addIcon from '../../../public/img/add.svg';
 import componentClasses from '../../css/productCard.css';
 import formsClasses from '../../css/forms.css';
+import RubSymbol from './RubSymbol';
 
 class ProductCard extends Component {
     constructor(props) {
@@ -11,6 +12,8 @@ class ProductCard extends Component {
         this.countChangeHandler = this._countChangeHandler.bind(this);
         this.countDecHandler = this._countDecHandler.bind(this);
         this.countIncHandler = this._countIncHandler.bind(this);
+        this.byClickHandler = this._byClickHandler.bind(this);
+        this.countInputBlurHandler = this._countInputBlurHandler.bind(this);
     }
 
     _countChangeHandler(e) {
@@ -20,12 +23,22 @@ class ProductCard extends Component {
         }
     }
 
+    _countInputBlurHandler() {
+        if (this.state.count < 1) {
+            this.setState({ count: 1 });
+        }
+    }
+
     _countDecHandler() {
-        this.setState({ count: Math.max(this.state.count - 1, 0) });
+        this.setState({ count: Math.max(this.state.count - 1, 1) });
     }
 
     _countIncHandler() {
         this.setState({ count: this.state.count + 1 });
+    }
+
+    _byClickHandler() {
+        this.setState({ count: 1 });
     }
 
     render() {
@@ -45,11 +58,14 @@ class ProductCard extends Component {
                 </div>
                 <div className={componentClasses.price}>
                     <span className={componentClasses.sum}>
-                        {(uPrice * this.state.count || '–') + '\u00A0\u20BD\u00A0'}
+                        {(uPrice * this.state.count || '–')}
+                        <RubSymbol />
                     </span>
-                    <span className={componentClasses.secondaryText}>
-                        {(this.state.count > 1) && `(${uPrice}\u00A0\u20BD x ${this.state.count})`}
-                    </span>
+                    {(this.state.count > 1) &&
+                        <span className={componentClasses.secondaryText}>
+                            {'(' + uPrice}<RubSymbol />{' x ' + this.state.count + ')'}
+                        </span>
+                    }
                 </div>
                 <div className={componentClasses.actions}>
                     <button
@@ -64,6 +80,7 @@ class ProductCard extends Component {
                         pattern="\d*"
                         value={this.state.count}
                         onChange={this.countChangeHandler}
+                        onBlur={this.countInputBlurHandler}
                         className={formsClasses.textInput + ' ' + componentClasses.countInput}
                         />
                     <button
@@ -75,11 +92,12 @@ class ProductCard extends Component {
                     </button>
                     <div className={componentClasses.byBtnWrapper}>
                         <button
+                            onTouchTap={this.byClickHandler}
                             type="button"
                             className={formsClasses.btn + ' ' + componentClasses.byBtn}
                             >
                             купить
-                </button>
+                        </button>
                     </div>
                 </div>
             </div>
