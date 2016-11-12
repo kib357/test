@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import Loader from './Loader';
 import componentClasses from '../../css/catalog.css';
 import ProductCard from './ProductCard';
+import CategoryCard from './CategoryCard';
+import Breadcrumbs from './Breadcrumbs';
 
 class Catalog extends Component {
     constructor(props) {
         super(props);
         this.backLinkClickHandler = this._backLinkClickHandler.bind(this);
+        this.categoryClickHandler = this._categoryClickHandler.bind(this);
+        this.productClickHandler = this._productClickHandler.bind(this);
     }
 
     componentDidMount() {
@@ -36,27 +40,43 @@ class Catalog extends Component {
     _backLinkClickHandler(e) {
         e.preventDefault();
         e.stopPropagation();
-        const p = e.currentTarget.getAttribute('href');
-        this.props.openCategory(p);
+        const uri = e.currentTarget.getAttribute('href');
+        this.props.openCategory(uri);
+    }
+
+    _categoryClickHandler(e) {
+        const uri = e.currentTarget.getAttribute('data-uri');
+        this.props.openUri(uri);
+    }
+
+    _productClickHandler(e) {
+        const id = e.currentTarget.getAttribute('data-id');
+        this.props.openProduct(id);
     }
 
     render() {
-        const {items, category, fetchingCategory, fetchingItems} = this.props;
-        let backLink = null;
-        if (items && items.breadcrumbs && items.breadcrumbs.length > 1) {
-            const d = items.breadcrumbs[items.breadcrumbs.length - 2];
-            backLink = <a href={d.path} onClick={this.backLinkClickHandler}>назад в {d.name}</a>;
-        }
+        const {items, fetchingCategory, fetchingItems} = this.props;
         return (
             <div className={componentClasses.wrapper}>
                 <Loader position="relative" hide={!fetchingCategory && !fetchingItems} />
-                {backLink}
-                {category && <h2>{category.name}</h2>}
-                {items && items.products && <div>
-                    {
-                        items.products.map((p, i) => (<ProductCard key={i} {...p} />))
-                    }
-                </div>}
+                {items &&
+                    <div>
+                        <Breadcrumbs items={items.breadcrumbs} onBackLinkClick={this.backLinkClickHandler} />
+                        {Array.isArray(items.sub_categories) ?
+                            <div>
+                                {items.sub_categories.map((p, i) => (
+                                    <CategoryCard key={i} {...p} onClick={this.categoryClickHandler} />
+                                ))}
+                            </div>
+                            :
+                            <div>
+                                {(items.products || []).map((p, i) => (
+                                    <ProductCard key={i} {...p} onClick={this.productClickHandler} />
+                                ))}
+                            </div>
+                        }
+                    </div>
+                }
             </div>
         );
     }

@@ -9,7 +9,7 @@ export const toggleMenu = (e) => {
     };
 };
 
-export const applyPath = (path) => {
+const _applyPath = (path) => {
     return (dispatch, getState) => {
         let page = 'main';
         const state = getState();
@@ -38,11 +38,20 @@ export const addHistoryListener = () => {
     return (dispatch, getState) => {
         const location = history.location;
         console.log('addHistoryListener:', location);
-        applyPath(location.pathname)(dispatch, getState);
+        _applyPath(location.pathname)(dispatch, getState);
         history.listen((location, action) => {
             // location is an object like window.location
             console.log(action, location.pathname, location.state);
-            applyPath(location.pathname)(dispatch, getState);
+            _applyPath(location.pathname)(dispatch, getState);
         });
+    };
+};
+
+export const openUri = (uri) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        uri = (uri[0] === '/') ? uri : `${state.nav.path}/${uri}`;
+        console.debug('[openUri]', uri);
+        history.push(uri);
     };
 };

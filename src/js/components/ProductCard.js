@@ -31,6 +31,8 @@ class ProductCard extends Component {
     render() {
         const {name, erp_id, unit_prices} = this.props;
         const {weight: uWeight, price: uPrice, name: uName} = (unit_prices[this.state.unitIndex] || {});
+        uWeight;
+        uName;
         return (
             <div className={componentClasses.wrapper}>
                 <div className={componentClasses.content}>

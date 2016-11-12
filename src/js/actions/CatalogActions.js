@@ -4,7 +4,8 @@ import history from '../services/history';
 export const fetchCategory = () => {
     return (dispatch, getState) => {
         const state = getState();
-        const uriName = state.nav.path.split('/').filter(p => p).pop();
+        let uriName = state.nav.path.split('/').filter(p => p).pop();
+        uriName = (uriName === 'catalog') ? '/' : uriName;
         const cityId = state.cities.current.erp_id;
         console.debug('[fetchCategory] uriName:', uriName);
         const category = Object.keys(state.categories.byId)
