@@ -65,7 +65,7 @@ class ProductCard extends Component {
                         <img src={`http://images.sdvor.com/sdvorcom/130x130/0/${erp_id}.jpg`} />
                     </div>
                 </div>
-                {uPrice ?
+                {uPrice &&
                     <div className={componentClasses.price}>
                         <span className={componentClasses.sum}>
                             {((uPrice * count).toFixed(2) || '–')}
@@ -88,11 +88,6 @@ class ProductCard extends Component {
                                 </span>
                             ))}
                         </div>
-                    </div>
-                    :
-                    <div className={componentClasses.price}>
-                        <span className={componentClasses.sum}>Цена по запросу
-                        </span>
                     </div>
                 }
                 {uPrice ?

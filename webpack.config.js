@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 const HOT_SERVER_URL = '/';// "http://localhost:3001/";
 const devEntries = [
@@ -63,7 +64,11 @@ module.exports = (options = {}) => ({
             {
                 test: /\.css$/,
                 exclude: /(normalize|index)/,
-                loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+                loaders: [
+                    'style',
+                    'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+                    'postcss-loader',
+                ],
             },
             {
                 test: /\.css$/,
@@ -97,19 +102,6 @@ module.exports = (options = {}) => ({
             },
         ],
     },
-    // We use PostCSS for autoprefixing only.
-    // postcss: function () {
-    //     return [
-    //         autoprefixer({
-    //             browsers: [
-    //                 '>1%',
-    //                 'last 4 versions',
-    //                 'Firefox ESR',
-    //                 'not ie < 9', // React doesn't support IE8 anyway
-    //             ]
-    //         }),
-    //     ];
-    // },
     plugins: [
         // Generates an `index.html` file with the <script> injected.
         new HtmlWebpackPlugin({
