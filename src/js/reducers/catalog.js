@@ -3,6 +3,8 @@ const catalogInitialState = {
     fetchingCategory: false,
     items: null,
     fetchingItems: false,
+    skip: 0,
+    take: 20,
     error: null,
 };
 export default function categoriesMenu(state = catalogInitialState, action) {
