@@ -53,16 +53,18 @@ class ProductCard extends Component {
         const {weight: uWeight, price: uPrice, volume: uVolume} = unit_prices[unitsIndex] || {};
         return (
             <div className={componentClasses.wrapper}>
+                <div className={componentClasses.header}>
+                    <h3 className={componentClasses.primaryText}>{name}</h3>
+                </div>
                 <div className={componentClasses.content}>
+                    <div className={componentClasses.media}>
+                        <img src={`http://images.sdvor.com/sdvorcom/130x130/0/${erp_id}.jpg`} />
+                    </div>
                     <div className={componentClasses.text}>
-                        <h3 className={componentClasses.primaryText}>{name}</h3>
                         <div className={componentClasses.secondaryText}>
                             {uWeight && <span>Вес: {uWeight + ' '}кг<br /></span>}
                             {uVolume && <span>Объем: {uVolume + ' '}м<sup>3</sup><br /></span>}
                         </div>
-                    </div>
-                    <div className={componentClasses.media}>
-                        <img src={`http://images.sdvor.com/sdvorcom/130x130/0/${erp_id}.jpg`} />
                     </div>
                 </div>
                 {uPrice &&
