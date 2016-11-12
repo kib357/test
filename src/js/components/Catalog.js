@@ -61,7 +61,7 @@ class Catalog extends Component {
                 <Loader position="relative" hide={!fetchingCategory && !fetchingItems} />
                 {items &&
                     <div>
-                        <Breadcrumbs items={items.breadcrumbs} onBackLinkClick={this.backLinkClickHandler} />
+                        <Breadcrumbs items={items.breadcrumbs} category={true} onBackLinkClick={this.backLinkClickHandler} />
                         {Array.isArray(items.sub_categories) ?
                             <div>
                                 {items.sub_categories.map((p, i) => (
