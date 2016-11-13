@@ -60,7 +60,7 @@ class CategoriesMenu extends Component {
     render() {
         const {items, current, fetching, error} = this.props;
         const slideStyle = {};
-        slideStyle['transform'] = `translateX(${this.state.back ? '-' : ''}64px)`;
+        slideStyle['transform'] = `translateX(${this.state.back ? '-' : ''}100%)`;
         if (error) {
             return <p style={styles.error}>Ошибка при загрузке категорий, пожалуйста обновите страницу.</p>;
         }
@@ -70,7 +70,7 @@ class CategoriesMenu extends Component {
                 <div
                     onTouchTap={this.stopPropagation}
                     className={componentClasses.content}
-                    style={(fetching || this.state.hide) ? slideStyle : { transition: 'transform .3s ease-in-out .1s' }}
+                    style={(fetching || this.state.hide) ? slideStyle : { transition: 'transform .3s cubic-bezier(0, 1, 1, 1) .1s' }}
                     >
                     {!fetching &&
                         <div>

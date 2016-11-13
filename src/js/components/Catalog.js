@@ -56,7 +56,7 @@ class Catalog extends Component {
     }
 
     render() {
-        const {items, error, page, fetching, hasPages, fetchNextPage} = this.props;
+        const {items, category, error, page, fetching, hasPages, fetchNextPage} = this.props;
         return (
             <div className={componentClasses.wrapper}>
                 {items &&
@@ -67,6 +67,10 @@ class Catalog extends Component {
                             total={items.total}
                             onBackLinkClick={this.backLinkClickHandler}
                             />
+                        <div className={componentClasses.header}>
+                            <h1>{category.name}</h1>
+                            {items.total && <span>{items.total}</span>}
+                        </div>
                         {Array.isArray(items.sub_categories) ?
                             <div>
                                 {items.sub_categories.map((p, i) => (

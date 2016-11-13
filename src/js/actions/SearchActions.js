@@ -1,6 +1,7 @@
 import { CATALOG_API_URI } from '../const';
+import history from '../services/history';
 
-export const fetchSearchResults = (query) => {
+export const fetchMenuSearchResults = (query) => {
     return (dispatch, getState) => {
         if (!query) {
             return dispatch({ type: 'SEARCH_CLEAR' });
@@ -11,6 +12,17 @@ export const fetchSearchResults = (query) => {
             type: 'SEARCH_RESULTS_FETCH',
             $fetch: `${CATALOG_API_URI}/products/drop_mobile/?city_id=${cityId}&phrase=${encodeURIComponent(query)}`,
             query,
+        });
+    };
+};
+
+export const openSearchPage = (genericProductId, query) => {
+    return (dispatch, getState) => {
+        const state = getState();
+        const city = state.cities.current;
+        history.push(`/${city.uri_name}/catalog/search/?generic_id=${genericProductId}&phrase=${encodeURIComponent(query)}`);
+        dispatch({
+            type: 'NAV_TOGGLE_MENU',
         });
     };
 };

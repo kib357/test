@@ -2,6 +2,25 @@
     padding: 9px;
 }
 
+.header {
+    display: flex;
+    margin: 24px 0 11px 0;
+}
+
+.header h1 {
+    flex: 2 0;
+    margin: 0;
+    font-size: 1.3rem;
+    color: rgba(0,0,0,.87);
+}
+
+.header span {
+    color: rgba(0,0,0,.54);
+    padding-left: 14px;
+    font-size: 1.3rem;
+    font-weight: normal;
+}
+
 .fetchMore {
     padding: 14px 0;
 }

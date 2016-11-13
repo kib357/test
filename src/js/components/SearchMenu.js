@@ -29,14 +29,14 @@ class SearchMenu extends Component {
         const query = e.target.value;
         clearTimeout(this.state.timer);
         const timer = setTimeout(() => {
-            this.props.fetchSearchResults(this.state.query);
+            this.props.fetchMenuSearchResults(this.state.query);
         }, SEARCH_TIMEOUT);
         this.setState({ timer, query });
     }
 
     _resultClickHandler(e) {
         const genericProductId = e.currentTarget.getAttribute('data-id');
-        this.props.openSearchPage(genericProductId);
+        this.props.openSearchPage(genericProductId, this.state.query);
     }
 
     stopPropagation(e) {

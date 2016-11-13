@@ -7,22 +7,15 @@ const Breadcrumbs = ({items, category, total, onBackLinkClick}) => {
         return null;
     }
     items = items.slice();
-    let currentCategory;
     if (category) {
-        currentCategory = items.pop();
+        items.pop();
     }
     const d = items.pop() || { name: 'Каталог', path: '' };
     return (
-        <div className={componentClasses.wrapper}>
+        <div>
             <div className={componentClasses.linksWrapper}>
                 <a href={d.path} onClick={onBackLinkClick}>{arrowLeft + d.name}</a>
             </div>
-            {category &&
-                <div className={componentClasses.header}>
-                    <h1>{currentCategory.name}</h1>
-                    {total && <span>{total}</span>}
-                </div>
-            }
         </div>
     );
 };
