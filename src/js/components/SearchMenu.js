@@ -38,6 +38,10 @@ class SearchMenu extends Component {
 
     }
 
+    stopPropagation(e) {
+        e.stopPropagation();
+    }
+
     render() {
         const {query} = this.state;
         const {results, query: resultsQuery, fetching} = this.props;
@@ -48,7 +52,7 @@ class SearchMenu extends Component {
         const searchReg = new RegExp('(' + searchData.join('|') + ')', 'ig');
         return (
             <div className={componentClasses.wrapper} >
-                <div className={componentClasses.inputWrapper} >
+                <div className={componentClasses.inputWrapper} onTouchTap={this.stopPropagation}>
                     <input
                         ref="input"
                         type="text"
@@ -66,7 +70,7 @@ class SearchMenu extends Component {
                 {results && resultsQuery === query &&
                     <div className={componentClasses.resultsWrapper}>
                         {results.length > 0 ?
-                            <div className={componentClasses.results}>
+                            <div className={componentClasses.results} onTouchTap={this.stopPropagation}>
                                 {results.map((e, i) => {
                                     const {id, name: resName, doc_count} = e;
                                     let name = resName.split(searchReg);
@@ -82,7 +86,7 @@ class SearchMenu extends Component {
                                 })}
                             </div>
                             :
-                            <div className={componentClasses.results}>
+                            <div className={componentClasses.results} onTouchTap={this.stopPropagation}>
                                 <div className={componentClasses.result}>
                                     <div className={componentClasses.name}>
                                         Ничего не найдено :'(

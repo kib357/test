@@ -14,9 +14,7 @@ class NavMenuContainer extends Component {
     }
 
     _closeMenu(e) {
-        if (e.target === e.currentTarget) {
-            this.props.toggleMenu(e);
-        }
+        this.props.toggleMenu(e);
     }
 
     render() {

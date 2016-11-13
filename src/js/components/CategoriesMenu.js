@@ -53,6 +53,10 @@ class CategoriesMenu extends Component {
         }
     }
 
+    stopPropagation(e) {
+        e.stopPropagation();
+    }
+
     render() {
         const {items, current, fetching, error} = this.props;
         const slideStyle = {};
@@ -62,8 +66,9 @@ class CategoriesMenu extends Component {
         }
         return (
             <div className={componentClasses.wrapper} >
-                <Loader position="absolute" hide={!fetching}/>
+                <Loader position="absolute" hide={!fetching} />
                 <div
+                    onTouchTap={this.stopPropagation}
                     className={componentClasses.content}
                     style={(fetching || this.state.hide) ? slideStyle : { transition: 'transform .15s ease-out' }}
                     >
