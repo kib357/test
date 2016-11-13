@@ -4,7 +4,7 @@ import * as SearchActions from '../actions/SearchActions';
 import SearchMenu from '../components/SearchMenu';
 
 const SearchMenuContainer = connect(
-    state => state,
+    state => state.searchMenu,
     dispatch => (bindActionCreators(SearchActions, dispatch))
 )(SearchMenu);
 

@@ -1,0 +1,57 @@
+.wrapper {
+    flex: 2 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.loader {
+    background-color: #fff;
+}
+
+.inputWrapper {
+    position: relative;
+    padding: 9px;
+    background-color: #fff;
+}
+
+.inputWrapper img {
+    position: absolute;
+    right: 13px;
+    top: 13px;
+    width: 24px;
+    opacity: .6
+}
+
+.input {
+    width: 100%;
+    padding-right: 32px;
+}
+
+.resultsWrapper {
+    flex: 2 0;
+    overflow: auto;
+}
+
+.results {
+    background-color: #fff;
+}
+
+.result {
+    display: flex;
+    padding: 14px 18px 14px 14px;
+    font-size: .9rem;
+    /*font-weight: 300;*/
+    border-bottom: 1px solid rgba(0,0,0,.12);
+}
+
+.result .name {
+    flex: 2 0;
+}
+
+.highlight {
+    color: #F57C00;
+}
+
+.count {
+
+}

@@ -1,8 +1,11 @@
 .wrapper {
+    flex: 2 0;
+    overflow: auto;
     position: relative;
     min-height: 50px;
 }
 
 .content {
+    background-color: #fff;
     transform: translateX(0);
 }

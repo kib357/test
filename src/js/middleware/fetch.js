@@ -2,10 +2,10 @@ const createFetchMiddleware = config => {
     config = Object.assign({ options: {} }, config);
 
     return ({ dispatch }) => (next) => (action) => {
-        const { type, $fetch, $success, $error } = action;
-        if (!$fetch) {
+        if (action == null || action.$fetch == null) {
             return next(action);
         }
+        const { type, $fetch, $success, $error } = action;
         const extra = {};
         for (let key of Object.keys(action)) {
             if (['type', '$fetch', '$success', '$error', 'data', 'error'].indexOf(key) >= 0) {
@@ -13,8 +13,12 @@ const createFetchMiddleware = config => {
             }
             extra[key] = action[key];
         }
-
-        const [url, options] = $fetch;
+        let url, options;
+        if (Array.isArray($fetch)) {
+            [url, options] = $fetch;
+        } else {
+            url = $fetch;
+        }
         const fetchOptions = Object.assign({}, config.options, options);
 
         dispatch(Object.assign({ type: type + '_REQUEST' }, extra));

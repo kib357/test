@@ -40,11 +40,7 @@ class NavMenuContainer extends Component {
         }
         return (
             <div className={headerClasses.navMenuWrapper} onTouchTap={this.closeMenu}>
-                <div className={headerClasses.navMenuComponentWrapper}>
-                    <div>
-                        {component}
-                    </div>
-                </div>
+                {component}
             </div>
         );
     }
