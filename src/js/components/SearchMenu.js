@@ -35,7 +35,8 @@ class SearchMenu extends Component {
     }
 
     _resultClickHandler(e) {
-
+        const genericProductId = e.currentTarget.getAttribute('data-id');
+        this.props.openSearchPage(genericProductId);
     }
 
     stopPropagation(e) {
