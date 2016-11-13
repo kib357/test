@@ -27,18 +27,25 @@ export const fetchCategory = () => {
     };
 };
 
-export const fetchItems = () => {
+export const fetchItems = (page = 0) => {
     return (dispatch, getState) => {
         const state = getState();
         const category = state.catalog.category;
         const cityId = state.cities.current.erp_id;
+        const pageSize = state.catalog.pageSize;
         console.debug('[fetchItems] category:', category);
         dispatch({
             type: 'CATALOG_ITEMS_FETCH',
-            $fetch: [`${CATALOG_API_URI}/categories/${category.id}/products/?city_id=${cityId}`, {
-                method: 'GET',
-            }],
+            $fetch: `${CATALOG_API_URI}/categories/${category.id}/products/?city_id=${cityId}&from=${pageSize * page}&size=${pageSize}`,
+            page,
         });
+    };
+};
+
+export const fetchNextPage = () => {
+    return (dispatch, getState) => {
+        const page = getState().catalog.page;
+        fetchItems(page + 1)(dispatch, getState);
     };
 };
 

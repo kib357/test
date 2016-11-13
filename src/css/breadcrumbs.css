@@ -1,5 +1,9 @@
+.wrapper {
+    padding-bottom: 11px;
+}
+
 .linksWrapper {
-    padding: 11px 0 7px 0;
+    padding: 11px 0 0 0;
 }
 
 .linksWrapper a {
@@ -12,11 +16,24 @@
     /*background-color: #ffcd4b;*/
     border: 1px solid #ffcd4b;
     color: rgba(0,0,0,.87) !important;
-    border-radius: 2;
+    border-radius: 2px;
 }
 
 .header {
+    display: flex;
+    margin: 24px 0 0 0;
+}
+
+.header h1 {
+    flex: 2 0;
+    margin: 0;
     font-size: 1.3rem;
-    margin: 24px 0;
     color: rgba(0,0,0,.87);
+}
+
+.header span {
+    color: rgba(0,0,0,.54);
+    padding-left: 14px;
+    font-size: 1.3rem;
+    font-weight: normal;
 }

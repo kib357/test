@@ -6,21 +6,40 @@ const catalogInitialState = {
     skip: 0,
     take: 20,
     error: null,
+    page: 0,
+    pageSize: 10,
 };
 export default function categoriesMenu(state = catalogInitialState, action) {
     switch (action.type) {
+        //Category
         case 'CATALOG_CATEGORY_FETCH_REQUEST':
             return Object.assign({}, catalogInitialState, { fetchingCategory: true });
         case 'CATALOG_CATEGORY_FETCH_ERROR':
             return Object.assign({}, catalogInitialState, { error: action.error });
         case 'CATALOG_CATEGORY_FETCH_RESPONSE':
             return Object.assign({}, catalogInitialState, { category: action.data.category });
-        case 'CATALOG_ITEMS_FETCH_REQUEST':
-            return Object.assign({}, catalogInitialState, { category: state.category, fetchingItems: true });
+
+        //Products
+        case 'CATALOG_ITEMS_FETCH_REQUEST': {
+            const newState = { category: state.category, fetchingItems: true, page: action.page };
+            if (action.page !== 0) {
+                newState.items = state.items;
+            }
+            return Object.assign({}, catalogInitialState, newState);
+        }
         case 'CATALOG_ITEMS_FETCH_ERROR':
             return Object.assign({}, catalogInitialState, { error: action.error });
-        case 'CATALOG_ITEMS_FETCH_RESPONSE':
-            return Object.assign({}, catalogInitialState, { category: state.category, items: action.data });
+        case 'CATALOG_ITEMS_FETCH_RESPONSE': {
+            if (action.page !== state.page) { return state }
+            const newState = { category: state.category, page: action.page };
+            if (action.page === 0) {
+                newState.items = action.data;
+            } else {
+                newState.items = Object.assign({}, state.items);
+                newState.items.products = [...state.items.products, ...action.data.products];
+            }
+            return Object.assign({}, catalogInitialState, newState);
+        }
         case 'NAV_OPEN_PAGE':
             return Object.assign({}, catalogInitialState);
         default:

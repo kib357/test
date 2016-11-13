@@ -74,7 +74,8 @@
 .byBtn {
     background-color: #93B93E !important;
     letter-spacing: 1px;
-    color: #5a7420;
+    /*color: #5a7420;*/
+    color: #fff;
     text-shadow: 0 1px 1px rgba(255,255,255,.4);
 }
 

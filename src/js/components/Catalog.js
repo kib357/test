@@ -4,6 +4,7 @@ import componentClasses from '../../css/catalog.css';
 import ProductCard from './ProductCard';
 import CategoryCard from './CategoryCard';
 import Breadcrumbs from './Breadcrumbs';
+import ScrollButton from './ScrollButton';
 
 class Catalog extends Component {
     constructor(props) {
@@ -55,13 +56,17 @@ class Catalog extends Component {
     }
 
     render() {
-        const {items, fetchingCategory, fetchingItems} = this.props;
+        const {items, error, page, fetching, hasPages, fetchNextPage} = this.props;
         return (
             <div className={componentClasses.wrapper}>
-                <Loader position="relative" hide={!fetchingCategory && !fetchingItems} />
                 {items &&
                     <div>
-                        <Breadcrumbs items={items.breadcrumbs} category={true} onBackLinkClick={this.backLinkClickHandler} />
+                        <Breadcrumbs
+                            items={items.breadcrumbs}
+                            category={true}
+                            total={items.total}
+                            onBackLinkClick={this.backLinkClickHandler}
+                            />
                         {Array.isArray(items.sub_categories) ?
                             <div>
                                 {items.sub_categories.map((p, i) => (
@@ -70,13 +75,26 @@ class Catalog extends Component {
                             </div>
                             :
                             <div>
-                                {(items.products || []).map((p, i) => (
-                                    <ProductCard key={i} {...p} onClick={this.productClickHandler} />
-                                ))}
+                                <div>
+                                    {(items.products || []).map((p, i) => (
+                                        <ProductCard key={i} {...p} onClick={this.productClickHandler} />
+                                    ))}
+                                </div>
+                                {hasPages &&
+                                    <div className={componentClasses.fetchMore}>
+                                        <ScrollButton
+                                            fetching={fetching}
+                                            label={fetching ? 'Загрузка...' : 'Загрузить ещё'}
+                                            autoLoad={page > 0}
+                                            onClick={fetchNextPage}
+                                            />
+                                    </div>}
                             </div>
                         }
                     </div>
                 }
+                <Loader position="relative" hide={!fetching || (page > 0)} />
+                {error && <p>{error}</p>}
             </div>
         );
     }
