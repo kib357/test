@@ -15,8 +15,8 @@ class SearchMenu extends Component {
         this.state = {
             query: '',
         };
-        this._queryChangeHandler = this.queryChangeHandler.bind(this);
-        this._resultClickHandler = this.resultClickHandler.bind(this);
+        this.queryChangeHandler = this._queryChangeHandler.bind(this);
+        this.resultClickHandler = this._resultClickHandler.bind(this);
     }
 
     componentDidMount() {

@@ -17,7 +17,7 @@ class UrlRewrite extends Component {
     }
 
     render() {
-        return (this.state.ready ? this.props.children : null);
+        return (this.state.ready ? this.props.children : <div></div>);
     }
 }
 
