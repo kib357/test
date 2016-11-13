@@ -10,7 +10,7 @@ class CitiesLoader extends Component {
     }
 
     render() {
-        if (this.props.list === null) {
+        if (this.props.list === null || this.props.current === null) {
             return <Loader text="Загрузка списка городов..." />;
         } else {
             return this.props.children;
