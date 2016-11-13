@@ -15,8 +15,8 @@ class SearchMenu extends Component {
         this.state = {
             query: '',
         };
-        this.queryChangeHandler = this.queryChangeHandler.bind(this);
-        this.queryInputBlurHandler = this.queryInputBlurHandler.bind(this);
+        this._queryChangeHandler = this.queryChangeHandler.bind(this);
+        this._resultClickHandler = this.resultClickHandler.bind(this);
     }
 
     componentDidMount() {
@@ -25,7 +25,7 @@ class SearchMenu extends Component {
         });
     }
 
-    queryChangeHandler(e) {
+    _queryChangeHandler(e) {
         const query = e.target.value;
         clearTimeout(this.state.timer);
         const timer = setTimeout(() => {
@@ -34,7 +34,7 @@ class SearchMenu extends Component {
         this.setState({ timer, query });
     }
 
-    queryInputBlurHandler() {
+    _resultClickHandler(e) {
 
     }
 
@@ -59,7 +59,6 @@ class SearchMenu extends Component {
                         placeholder="Найти в каталоге"
                         value={query}
                         onChange={this.queryChangeHandler}
-                        onBlur={this.queryInputBlurHandler}
                         className={formsClasses.textInput + ' ' + componentClasses.input}
                         />
                     <img src={searchIcon} />
@@ -77,7 +76,12 @@ class SearchMenu extends Component {
                                     for (let j = 1; j < name.length; j += 2) {
                                         name[j] = <span key={j + 'number'} className={componentClasses.highlight}>{name[j]}</span>;
                                     }
-                                    return <div key={i} data-id={id} className={componentClasses.result}>
+                                    return <div
+                                        key={i}
+                                        data-id={id}
+                                        className={componentClasses.result}
+                                        onTouchTap={this.resultClickHandler}
+                                        >
                                         <div className={componentClasses.name}>
                                             {name}
                                         </div>

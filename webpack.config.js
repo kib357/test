@@ -41,7 +41,7 @@ module.exports = (options = {}) => ({
     ],
     devtool: options.dev ? 'eval' : 'source-map',
     output: {
-        path: path.resolve('./build'),
+        path: path.resolve('./docs'),
         filename: 'app.js',
         publicPath: `${HOT_SERVER_URL}`,
     },
