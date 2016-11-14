@@ -7,13 +7,10 @@ export default function configureStore(initialState) {
     let middleware = [createFetchMiddleware(), thunkMiddleware];
 
     if (process.env.NODE_ENV !== 'production') {
-        const logger = require('redux-logger').createLogger();
+        const logger = require('redux-logger')();
         middleware = [...middleware, logger];
     }
 
-    return createStore(
-        rootReducer,
-        initialState,
-        applyMiddleware(middleware)
-    );
+    const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
+    return createStoreWithMiddleware(rootReducer, initialState);
 }
