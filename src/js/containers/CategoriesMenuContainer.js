@@ -15,6 +15,7 @@ const CategoriesMenuContainer = connect(
             openedCategories: state.categoriesMenu.openedCategories,
             parentCategories: state.categoriesMenu.parentCategories,
             hItems,
+            items,
             current,
             fetching: items === null,
             error: (typeof items === 'string' ? items : null),
