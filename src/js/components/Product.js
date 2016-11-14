@@ -91,7 +91,7 @@ class Product extends Component {
                                     .map(getShopInfo)}
                                 <p>Доставим Вам товар точно в оговорённое время:</p>
                                 {item.shops
-                                    .filter(s => product.shops.findIndex(ps => ps.stock < 1 && ps.shop_id === s.shop_id) < 0)
+                                    .filter(s => product.shops.findIndex(ps => ps.shop_id === s.shop_id && ps.stock > 0) < 0)
                                     .map(getShopInfo)}
                             </div>
                         }
