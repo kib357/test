@@ -38,6 +38,7 @@ class header extends Component {
 
     _logoClickHandler(e) {
         e.preventDefault();
+        e.stopPropagation();
         this.props.openUri('/');
     }
 
@@ -59,7 +60,7 @@ class header extends Component {
                 </div>
                 <div className={headerClasses.logoAndPhone}>
                     <div className={headerClasses.logo}>
-                        <a href="/" onTouchTap={this.logoClickHandler}>
+                        <a href="/" onClick={this.logoClickHandler}>
                             <img src={logoSrc} alt="Строительный двор" />
                         </a>
                     </div>

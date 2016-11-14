@@ -1,6 +1,8 @@
 import history from '../services/history';
 import { selectCity } from './CitiesActions';
 
+const absUrlReg = new RegExp('^(?:[a-z]+:)?//', 'i');
+
 export const toggleMenu = (e) => {
     const menu = e.currentTarget.getAttribute('data-menu');
     return {
@@ -49,6 +51,10 @@ export const addHistoryListener = () => {
 
 export const openUri = (uri) => {
     return (dispatch, getState) => {
+        if (absUrlReg.test(uri)) {
+            console.debug('[openUri] external link:', uri);
+            window.location.assign(uri);
+        }
         const state = getState();
         uri = (uri[0] === '/') ? uri : `${state.nav.path}/${uri}`;
         console.debug('[openUri]', uri);

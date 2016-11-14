@@ -9,24 +9,29 @@ const localPages = {
 
 class StaticPage extends Component {
     componentDidMount() {
-        this._loadContentIfNeed();
+        this._loadContentAndAddHadlers();
     }
 
     componentDidUpdate() {
-        this._loadContentIfNeed();
+        this._loadContentAndAddHadlers();
     }
 
-    _loadContentIfNeed() {
-        const {pageName, content, fetching, error, fetchPage} = this.props;
-        if (localPages[pageName]) { return }
-        if (!content && !fetching && !error) {
-            fetchPage();
+    _loadContentAndAddHadlers() {
+        const {pageName, content, fetching, error, fetchPage, openUri} = this.props;
+        if (!content && !localPages[pageName] && !fetching && !error) {
+            return fetchPage();
         }
-    }
-
-    clickHandler(e) {
-        console.log(e.nativeEvent);
-        e.preventDefault();
+        if ((content || localPages[pageName]) && !fetching && !error) {
+            const w = this.refs.wrapper;
+            const links = w.getElementsByTagName('a');
+            for (let i = 0; i < links.length; i++) {
+                links[i].addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    e.preventDefault();
+                    openUri(href);
+                });
+            }
+        }
     }
 
     render() {
@@ -34,7 +39,7 @@ class StaticPage extends Component {
         const lp = localPages[pageName];
         if (lp) {
             return (
-                <div className={componentClasses.wrapper}>
+                <div className={componentClasses.wrapper} ref="wrapper">
                     <div className={lp.disableCardStyle ? '' : componentClasses.content}>
                         <div>
                             {lp.name && <h2>{lp.name}</h2>}
@@ -47,7 +52,7 @@ class StaticPage extends Component {
             );
         }
         return (
-            <div className={componentClasses.wrapper}>
+            <div className={componentClasses.wrapper} ref="wrapper">
                 <div className={componentClasses.content}>
                     <Loader position="relative" hide={!fetching} />
                     {error && <h2 className={componentClasses.error}>{error}</h2>}

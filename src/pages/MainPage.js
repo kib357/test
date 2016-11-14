@@ -15,6 +15,10 @@ const MainPage = () => {
             <a href="/exchange">
                 <p>Обмен, возврат товара</p>
             </a>
+
+            <a href="http://habrahabr.ru">
+                <p>Habr</p>
+            </a>
         </div>
     );
 };
