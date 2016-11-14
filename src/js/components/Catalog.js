@@ -71,7 +71,7 @@ class Catalog extends Component {
                         {category.name &&
                             <div className={componentClasses.header}>
                                 <h1>{category.name}</h1>
-                                {items.total && <span>{items.total}</span>}
+                                {!Array.isArray(items.sub_categories) && items.total && <span>{items.total}</span>}
                             </div>
                         }
                         {/*Search results*/}
