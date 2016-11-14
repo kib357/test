@@ -6,6 +6,8 @@ import configureStore from './store/configureStore';
 import '../css/normalize.css';
 import '../css/index.css';
 
+//404 page for github
+import '../html/404.html';
 //Image for loading page
 import '../../public/img/logo.png';
 //Image for 'about' page

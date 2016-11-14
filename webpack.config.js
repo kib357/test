@@ -90,6 +90,14 @@ module.exports = (options = {}) => ({
                     name: 'assets/storage/uploads/[name].[ext]',
                 },
             },
+            //HTML error files (for github pages)
+            {
+                test: /\d{3}\.html$/,
+                loader: 'file',
+                query: {
+                    name: '[name].[ext]',
+                },
+            },
             // "url" loader works just like "file" loader but it also embeds
             // assets smaller than specified size as data URLs to avoid requests.
             {
