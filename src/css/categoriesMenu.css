@@ -3,7 +3,7 @@
     overflow: auto;
     position: relative;
     min-height: 50px;
-    background-color: #fff;
+    /*background-color: #fff;*/
 }
 
 .content {
