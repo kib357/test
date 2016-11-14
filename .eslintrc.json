@@ -68,6 +68,7 @@
     "globals": {
         "fetch": true,
         "module": true,
-        "require": true
+        "require": true,
+        "process": true
     }
 }
