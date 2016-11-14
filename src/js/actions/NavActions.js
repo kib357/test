@@ -37,11 +37,11 @@ const _applyPath = (path) => {
 export const addHistoryListener = () => {
     return (dispatch, getState) => {
         const location = history.location;
-        console.log('addHistoryListener:', location);
+        console.debug('addHistoryListener:', location);
         _applyPath(location.pathname)(dispatch, getState);
         history.listen((location, action) => {
             // location is an object like window.location
-            console.log(action, location.pathname, location.state);
+            console.debug(action, location.pathname, location.state);
             _applyPath(location.pathname)(dispatch, getState);
         });
     };

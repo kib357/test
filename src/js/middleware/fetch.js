@@ -40,7 +40,6 @@ const createFetchMiddleware = config => {
                         console.error(`Error while dispatching ${type}_RESPONSE action:`, e);
                     }
                 } else {
-                    console.log(_response);
                     const e = new Error(`${_response.status} ${_response.statusText}`);
                     e.data = data;
                     throw e;
