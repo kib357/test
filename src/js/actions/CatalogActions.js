@@ -49,7 +49,7 @@ export const fetchItems = (page = 0) => {
         const category = state.catalog.category;
         console.debug('[fetchItems] category:', category);
         const uri = category.id === '-1' ?
-            `${CATALOG_API_URI}/generic_products/${category.generic_id}/products/?city_id=${cityId}&phrase=${category.phrase}&from=${pageSize * page}&size=${pageSize}`
+            `${CATALOG_API_URI}/generic_products/${category.generic_id}/products/?city_id=${cityId}&phrase=${encodeURIComponent(category.phrase)}&from=${pageSize * page}&size=${pageSize}`
             :
             `${CATALOG_API_URI}/categories/${category.id}/products/?city_id=${cityId}&from=${pageSize * page}&size=${pageSize}`;
         dispatch({
