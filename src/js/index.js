@@ -5,6 +5,9 @@ import { AppContainer } from 'react-hot-loader';
 import configureStore from './store/configureStore';
 import '../css/normalize.css';
 import '../css/index.css';
+
+//Image for loading page
+import '../../public/img/logo.png';
 //Image for 'about' page
 import '../../public/img/info_10_06_2016.jpg';
 
