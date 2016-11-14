@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Loader from './Loader';
 import componentClasses from '../../css/catalog.css';
+import formsClasses from '../../css/forms.css';
 import ProductCard from './ProductCard';
 import CategoryCard from './CategoryCard';
 import Breadcrumbs from './Breadcrumbs';
@@ -73,14 +74,22 @@ class Catalog extends Component {
                                 {items.total && <span>{items.total}</span>}
                             </div>
                         }
+                        {/*Search results*/}
+                        {(category.id === '-1' && category.phrase && category.generic_name) ?
+                            <div className={formsClasses.secondaryLabel}>
+                                {`по фразе '${category.phrase}' в разделе '${category.generic_name}'`}
+                            </div>
+                            :
+                            null
+                        }
                         {Array.isArray(items.sub_categories) ?
-                            <div>
+                            <div className={componentClasses.itemsWrapper}>
                                 {items.sub_categories.map((p, i) => (
                                     <CategoryCard key={i} {...p} onClick={this.categoryClickHandler} />
                                 ))}
                             </div>
                             :
-                            <div>
+                            <div className={componentClasses.itemsWrapper}>
                                 <div>
                                     {(items.products || []).map((p, i) => (
                                         <ProductCard key={i} {...p} onClick={this.productClickHandler} />

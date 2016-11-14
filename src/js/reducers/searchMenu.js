@@ -14,7 +14,7 @@ export default function searchMenu(state = searchMenuInitialState, action) {
                 results: action.data.generic_products || [],
             });
         case 'SEARCH_QUERY_CHANGE':
-            return Object.assign({}, state, { query: action.query });
+            return Object.assign({}, state, { query: (action.query || '').slice(0, 100) });
         case 'SEARCH_CLEAR':
             return Object.assign({}, searchMenuInitialState);
         default:

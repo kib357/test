@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import searchIcon from '../../../public/img/search.svg';
+import clearIcon from '../../../public/img/clear.svg';
 import componentClasses from '../../css/searchMenu.css';
 import formsClasses from '../../css/forms.css';
 import Loader from '../components/Loader';
@@ -14,9 +15,18 @@ class SearchMenu extends Component {
         super(props);
         this.queryChangeHandler = this._queryChangeHandler.bind(this);
         this.resultClickHandler = this._resultClickHandler.bind(this);
+        this.clearQuery = this._clearQuery.bind(this);
     }
 
     componentDidMount() {
+        setTimeout(() => {
+            this.refs.input.focus();
+        });
+    }
+
+    _clearQuery() {
+        clearTimeout(this.timer);
+        this.props.clearSearchQuery();
         setTimeout(() => {
             this.refs.input.focus();
         });
@@ -33,7 +43,8 @@ class SearchMenu extends Component {
 
     _resultClickHandler(e) {
         const genericProductId = e.currentTarget.getAttribute('data-id');
-        this.props.openSearchPage(genericProductId, this.props.query);
+        const genericProductName = e.currentTarget.getAttribute('data-name');
+        this.props.openSearchPage(genericProductId, genericProductName, this.props.query);
     }
 
     stopPropagation(e) {
@@ -58,7 +69,7 @@ class SearchMenu extends Component {
                         onChange={this.queryChangeHandler}
                         className={formsClasses.textInput + ' ' + componentClasses.input}
                         />
-                    <img src={searchIcon} />
+                    <img src={query ? clearIcon : searchIcon} onTouchTap={this.clearQuery} />
                 </div>
                 <div className={componentClasses.loader}>
                     <Loader position="relative" hide={!fetching} style={{ transition: 'opacity .1s linear .1s' }} />
@@ -76,6 +87,7 @@ class SearchMenu extends Component {
                                     return <div
                                         key={i}
                                         data-id={id}
+                                        data-name={resName}
                                         className={componentClasses.result}
                                         onTouchTap={this.resultClickHandler}
                                         >

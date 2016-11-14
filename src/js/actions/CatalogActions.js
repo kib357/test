@@ -16,7 +16,11 @@ export const fetchCategory = () => {
         const cityId = state.cities.current.erp_id;
         console.debug('[fetchCategory] uriName:', uriName);
         const category = uriName === 'search' ?
-            Object.assign({}, searchCategory, { generic_id: getURLParameter('generic_id'), phrase: getURLParameter('phrase') })
+            Object.assign({}, searchCategory, {
+                generic_id: getURLParameter('generic_id'),
+                generic_name: (getURLParameter('gpname') || '').slice(0, 100),
+                phrase: (getURLParameter('phrase') || '').slice(0, 100),
+            })
             :
             Object.keys(state.categories.byId)
                 .map(cName => state.categories.byId[cName])
