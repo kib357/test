@@ -15,10 +15,14 @@
 }
 
 .big .content {
-    flex-direction: column;
+    display: block;
 }
 
 .content .media {
+    flex: 0 0 80px;
+}
+
+.big .content .media {
     flex: 0 0;
 }
 

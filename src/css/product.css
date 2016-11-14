@@ -60,6 +60,7 @@
 
 .desc {
     padding: 16px 0;
+    min-height: 80px;
     line-height: 1.3rem;
     color: rgba(0,0,0,.87);
 }

@@ -95,7 +95,7 @@ class Product extends Component {
                                     .map(getShopInfo)}
                             </div>
                         }
-                        {this.state.tab === 1 && hasDesc &&
+                        {this.state.tab === 1 &&
                             <div className={componentClasses.desc}>
                                 {hasDesc ? product.descriptions[0].text : 'Описание ещё не заполнено.'}
                             </div>
