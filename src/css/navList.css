@@ -1,9 +1,9 @@
 .listHeader {
     display: flex;
     align-items: center;
-    margin: 0 -24px;
-    padding: 0 24px;
-    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
+    margin: 0;
+    padding: 0;
+    /*box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);*/
 }
 
 .listHeader div img {

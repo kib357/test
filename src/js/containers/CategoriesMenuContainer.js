@@ -7,8 +7,14 @@ const CategoriesMenuContainer = connect(
     state => {
         const current = state.categoriesMenu.current;
         const items = state.categories.byParent['_' + current.id];
+        const hItems = [];
+        for (let c of state.categoriesMenu.openedCategories) {
+            hItems.push(state.categories.byParent['_' + c.id]);
+        }
         return {
-            items,
+            openedCategories: state.categoriesMenu.openedCategories,
+            parentCategories: state.categoriesMenu.parentCategories,
+            hItems,
             current,
             fetching: items === null,
             error: (typeof items === 'string' ? items : null),

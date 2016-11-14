@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import backIcon from '../../../public/img/back.svg';
-import arrowIcon from '../../../public/img/chevron_right.svg';
 import Loader from '../components/Loader';
 import componentClasses from '../../css/categoriesMenu.css';
-import navListClasses from '../../css/navList.css';
+import CategoriesList from './CategoriesList';
 
 const styles = {
     error: {
@@ -15,7 +13,7 @@ const styles = {
 class CategoriesMenu extends Component {
     constructor(props) {
         super(props);
-        this.state = { back: false };
+        this.state = { back: false, stack: [] };
         this.categoryClickHandler = this._categoryClickHandler.bind(this);
     }
 
@@ -58,57 +56,24 @@ class CategoriesMenu extends Component {
     }
 
     render() {
-        const {items, current, fetching, error} = this.props;
+        const {openedCategories, parentCategories, current, hItems, error} = this.props;
         const slideStyle = {};
         slideStyle['transform'] = `translateX(${this.state.back ? '-' : ''}100%)`;
         if (error) {
             return <p style={styles.error}>Ошибка при загрузке категорий, пожалуйста обновите страницу.</p>;
         }
         return (
-            <div className={componentClasses.wrapper} >
-                <Loader position="absolute" hide={!fetching} />
-                <div
-                    onTouchTap={this.stopPropagation}
-                    className={componentClasses.content}
-                    style={(fetching || this.state.hide) ? slideStyle : { transition: 'transform .3s cubic-bezier(0, 1, 1, 1) .1s' }}
-                    >
-                    {!fetching &&
-                        <div>
-                            {current.id !== 0 &&
-                                <div className={navListClasses.listHeader}>
-                                    <div
-                                        onTouchTap={this.categoryClickHandler}
-                                        data-back={true}
-                                        data-cat-id={current.parent_id}
-                                        >
-                                        <img src={backIcon} />
-                                    </div>
-                                    <span>{current.name}</span>
-                                </div>
-                            }
-                            {items &&
-                                <ul className={navListClasses.list}>
-                                    {
-                                        items.length === 0 ?
-                                            <li className={navListClasses.emptyLi}>
-                                                <span>В этой категории ничего нет</span>
-                                            </li>
-                                            :
-                                            items.map((e, i) => (
-                                                <li key={i}
-                                                    onTouchTap={this.categoryClickHandler}
-                                                    data-cat-id={e.id}
-                                                    data-leaf={e.is_leaf_category}>
-                                                    <span>{e.name}</span>
-                                                    {e.is_leaf_category ? null : <img src={arrowIcon} />}
-                                                </li>
-                                            ))
-                                    }
-                                </ul>
-                            }
+            <div className={componentClasses.wrapper} onTouchTap={this.stopPropagation}>
+                {
+                    (openedCategories || []).map((e, i) => (
+                        <div
+                            key={i}
+                            className={componentClasses.menu + (parentCategories.indexOf(e.id) >= 0 || (e.id === current.id && !this.state.hide) ? ' ' + componentClasses.menuShow : '')}
+                            >
+                            <CategoriesList category={e} items={hItems[i]} categoryClickHandler={this.categoryClickHandler} />
                         </div>
-                    }
-                </div>
+                    ))
+                }
             </div>
         );
     }

@@ -86,12 +86,12 @@ class Product extends Component {
                         {this.state.tab === 0 &&
                             <div>
                                 <p>Cейчас:</p>
-                                {product.shops
+                                {(product.shops || [])
                                     .filter(s => s.stock > 0)
                                     .map(getShopInfo)}
                                 <p>Доставим Вам товар точно в оговорённое время:</p>
-                                {item.shops
-                                    .filter(s => product.shops.findIndex(ps => ps.shop_id === s.shop_id && ps.stock > 0) < 0)
+                                {(item.shops || [])
+                                    .filter(s => (product.shops || []).findIndex(ps => ps.shop_id === s.shop_id && ps.stock > 0) < 0)
                                     .map(getShopInfo)}
                             </div>
                         }
