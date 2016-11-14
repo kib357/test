@@ -2,7 +2,7 @@ import React from 'react';
 import componentClasses from '../../css/breadcrumbs.css';
 
 const arrowLeft = '\u2190\u00A0';
-const Breadcrumbs = ({items, category, total, onBackLinkClick}) => {
+const Breadcrumbs = ({items, category, onBackLinkClick}) => {
     if (!Array.isArray(items) || items.length < 1) {
         return null;
     }

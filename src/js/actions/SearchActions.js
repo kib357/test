@@ -26,3 +26,8 @@ export const openSearchPage = (genericProductId, query) => {
         });
     };
 };
+
+export const setSearchQuery = (query) => ({
+    type: 'SEARCH_QUERY_CHANGE',
+    query,
+});

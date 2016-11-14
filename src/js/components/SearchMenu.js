@@ -12,9 +12,6 @@ const escapeRegExp = (str) => {
 class SearchMenu extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            query: '',
-        };
         this.queryChangeHandler = this._queryChangeHandler.bind(this);
         this.resultClickHandler = this._resultClickHandler.bind(this);
     }
@@ -27,16 +24,16 @@ class SearchMenu extends Component {
 
     _queryChangeHandler(e) {
         const query = e.target.value;
-        clearTimeout(this.state.timer);
-        const timer = setTimeout(() => {
-            this.props.fetchMenuSearchResults(this.state.query);
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+            this.props.fetchMenuSearchResults(this.props.query);
         }, SEARCH_TIMEOUT);
-        this.setState({ timer, query });
+        this.props.setSearchQuery(query);
     }
 
     _resultClickHandler(e) {
         const genericProductId = e.currentTarget.getAttribute('data-id');
-        this.props.openSearchPage(genericProductId, this.state.query);
+        this.props.openSearchPage(genericProductId, this.props.query);
     }
 
     stopPropagation(e) {
@@ -44,9 +41,8 @@ class SearchMenu extends Component {
     }
 
     render() {
-        const {query} = this.state;
-        const {results, query: resultsQuery, fetching} = this.props;
-        const searchData = escapeRegExp(this.state.query)
+        const {results, resultsQuery, query, fetching} = this.props;
+        const searchData = escapeRegExp(query)
             .trim()
             .split(' ')
             .filter(i => i);
