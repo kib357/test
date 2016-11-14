@@ -17,6 +17,7 @@ class header extends Component {
             min: false,
         };
         this.updateView = this._updateView.bind(this);
+        this.logoClickHandler = this._logoClickHandler.bind(this);
     }
 
     _updateView(position, direction) {
@@ -33,6 +34,11 @@ class header extends Component {
 
     componentWillUnmount() {
         scroll.removeListener('change', this.updateView);
+    }
+
+    _logoClickHandler(e) {
+        e.preventDefault();
+        this.props.openUri('/');
     }
 
     render() {
@@ -53,7 +59,7 @@ class header extends Component {
                 </div>
                 <div className={headerClasses.logoAndPhone}>
                     <div className={headerClasses.logo}>
-                        <a href="/">
+                        <a href="/" onTouchTap={this.logoClickHandler}>
                             <img src={logoSrc} alt="Строительный двор" />
                         </a>
                     </div>

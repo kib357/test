@@ -4,7 +4,7 @@ import * as StaticPageActions from '../actions/StaticPageActions';
 import StaticPage from '../components/StaticPage';
 
 const StaticPageContainer = connect(
-    state => state.staticPage,
+    state => Object.assign({}, state.staticPage, { pageName: state.nav.page }),
     dispatch => (bindActionCreators(StaticPageActions, dispatch))
 )(StaticPage);
 

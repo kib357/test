@@ -1,0 +1,21 @@
+.wrapper a {
+    display: block;
+    margin: 20px 10px;
+    padding: 15px;
+    color: rgba(0,0,0,.54);
+    background-color: #fce473;
+    text-decoration: none;
+    border-radius: 2px;
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.12);
+}
+
+.wrapper a.accent {
+    background-color: #97cd76;
+}
+
+.wrapper a p {
+    margin: 0;
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 300;
+}

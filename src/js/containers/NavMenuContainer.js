@@ -14,6 +14,8 @@ class NavMenuContainer extends Component {
     }
 
     _closeMenu(e) {
+        e.preventDefault();
+        e.stopPropagation();
         this.props.toggleMenu(e);
     }
 
