@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const autoprefixer = require('autoprefixer');
 
 const HOT_SERVER_URL = '/';// "http://localhost:3001/";
 const devEntries = [
@@ -87,7 +86,8 @@ module.exports = (options = {}) => ({
                 test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
                 loader: 'file',
                 query: {
-                    name: 'static/media/[name].[hash:8].[ext]',
+                    // name: 'static/media/[name].[hash:8].[ext]',
+                    name: 'assets/storage/uploads/[name].[ext]',
                 },
             },
             // "url" loader works just like "file" loader but it also embeds
@@ -97,7 +97,8 @@ module.exports = (options = {}) => ({
                 loader: 'url',
                 query: {
                     limit: 10000,
-                    name: 'static/media/[name].[hash:8].[ext]',
+                    // name: 'static/media/[name].[hash:8].[ext]',
+                    name: 'assets/storage/uploads/[name].[ext]',
                 },
             },
         ],
