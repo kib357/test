@@ -14,16 +14,25 @@
     padding: 0 16px;
 }
 
+.big .content {
+    flex-direction: column;
+}
+
 .content .media {
-    flex: 0 0 80px;
+    flex: 0 0;
 }
 
 .content .media img {
-    /*display: block;*/
     padding: 0;
     background-color: #ccc;
     height: 80px;
     width: 80px;
+}
+
+.big .content .media img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 14px;
 }
 
 .content .text {
@@ -31,9 +40,8 @@
     padding-left: 24px;
 }
 
-.price {
-    /*display: flex;*/
-    padding: 8px 16px;
+.big .content .text {
+    padding-left: 0;
 }
 
 .primaryText {
@@ -44,9 +52,9 @@
     color: #212121;
 }
 
-.sum {
+.big .primaryText {
     font-size: 1.2rem;
-    color: #F57C00;
+    font-weight: 400;
 }
 
 .secondaryText {
@@ -56,51 +64,5 @@
 }
 
 .actions {
-    display: flex;
-    padding: 8px 16px 8px 8px;
-}
-
-.countBtn {
-    background-color: #424242 !important;
-    min-width: 32px !important;
-}
-
-.byBtnWrapper {
-    flex: 2 0;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.byBtn {
-    background-color: #93B93E !important;
-    letter-spacing: 1px;
-    /*color: #5a7420;*/
-    color: #fff;
-    text-shadow: 0 1px 1px rgba(255,255,255,.4);
-}
-
-.countInput {
-    margin: 0 -4px 0 4px;
-    width: 40px;
-    text-align: center;
-    font-size: .9rem;
-}
-
-.units {
-    display: inline-block;
-}
-
-.units span {
-    display: inline-block;
-    margin-left: 5px;
-    padding: 2px 4px;
-    font-size: .8rem;
-    border: 1px solid rgba(0,0,0,.12);
-    color: rgba(0,0,0,.87);
-    border-radius: 2;
-    user-select: none;
-}
-
-.activeUnits {
-    border: 1px solid #F57C00 !important;
+    padding: 0 16px;
 }

@@ -11,7 +11,7 @@ class CitiesLoader extends Component {
 
     render() {
         if (this.props.list === null || this.props.current === null) {
-            return <Loader text="Загрузка списка городов..." />;
+            return <Loader text="Загрузка списка городов..." style={{ backgroundColor: '#fff' }} />;
         } else {
             return this.props.children;
         }

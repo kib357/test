@@ -13,6 +13,10 @@
     text-transform: uppercase;
 }
 
+.btn:first-of-type {
+    margin: 0;
+}
+
 .btnFullWidth {
     width: 100%;
     margin: 0;
