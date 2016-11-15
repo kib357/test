@@ -26,7 +26,7 @@ class CategoriesMenu extends Component {
         if (this.state.hide) {
             setTimeout(() => {
                 this.setState({ hide: false });
-            });
+            }, 50);
         }
     }
 

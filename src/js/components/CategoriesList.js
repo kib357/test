@@ -8,13 +8,13 @@ const CategoriesList = ({category, items, categoryClickHandler}) => {
         <div>
             {category.id !== 0 &&
                 <div className={navListClasses.listHeader}>
-                    <div
+                    <a
                         onTouchTap={categoryClickHandler}
                         data-back={true}
                         data-cat-id={category.parent_id}
                         >
                         <img src={backIcon} />
-                    </div>
+                    </a>
                     <span>{category.name}</span>
                 </div>
             }
@@ -27,12 +27,15 @@ const CategoriesList = ({category, items, categoryClickHandler}) => {
                             </li>
                             :
                             items.map((e, i) => (
-                                <li key={i}
-                                    onTouchTap={categoryClickHandler}
-                                    data-cat-id={e.id}
-                                    data-leaf={e.is_leaf_category}>
-                                    <span>{e.name}</span>
-                                    {e.is_leaf_category ? null : <img src={arrowIcon} />}
+                                <li key={i}>
+                                    <a
+                                        onTouchTap={categoryClickHandler}
+                                        data-cat-id={e.id}
+                                        data-leaf={e.is_leaf_category}
+                                        >
+                                        <span>{e.name}</span>
+                                        {e.is_leaf_category ? null : <img src={arrowIcon} />}
+                                    </a>
                                 </li>
                             ))
                     }
