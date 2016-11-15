@@ -4,7 +4,6 @@ import menuIcon from '../../../public/img/menu.svg';
 import searchIcon from '../../../public/img/search.svg';
 import phoneIcon from '../../../public/img/phone.svg';
 import cartIcon from '../../../public/img/cart.svg';
-import cn from 'classnames';
 
 const items = [
     { name: 'Каталог', icon: menuIcon, value: 'categories' },
