@@ -99,7 +99,7 @@ class ProductActions extends Component {
                         <img src={removeIcon} />
                     </button>
                     <input
-                        type="text"
+                        type="number"
                         pattern="\d*"
                         value={count}
                         onChange={this.countChangeHandler}

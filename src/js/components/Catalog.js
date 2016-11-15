@@ -5,6 +5,8 @@ import formsClasses from '../../css/forms.css';
 import ProductCard from './ProductCard';
 import CategoryCard from './CategoryCard';
 import Breadcrumbs from './Breadcrumbs';
+import GenericProducts from './GenericProducts';
+import SortSelect from './SortSelect';
 import ScrollButton from './ScrollButton';
 
 class Catalog extends Component {
@@ -13,6 +15,7 @@ class Catalog extends Component {
         this.backLinkClickHandler = this._backLinkClickHandler.bind(this);
         this.categoryClickHandler = this._categoryClickHandler.bind(this);
         this.productClickHandler = this._productClickHandler.bind(this);
+        this.generictProductChangeHandler = this._generictProductChangeHandler.bind(this);
     }
 
     componentDidMount() {
@@ -56,8 +59,12 @@ class Catalog extends Component {
         this.props.openProduct(uri);
     }
 
+    _generictProductChangeHandler(e) {
+        this.props.selectGenericProduct(e.target.value);
+    }
+
     render() {
-        const {items, category, error, page, fetching, hasPages, fetchNextPage} = this.props;
+        const {items, category, genericProductId, error, page, fetching, hasPages, fetchNextPage} = this.props;
         return (
             <div className={componentClasses.wrapper}>
                 {items &&
@@ -82,6 +89,18 @@ class Catalog extends Component {
                             :
                             null
                         }
+                        <div className={componentClasses.genericProductWrapper}>
+                            {Array.isArray(items.generic_products) &&
+                                <GenericProducts
+                                    products={items.generic_products}
+                                    value={genericProductId}
+                                    onChange={this.generictProductChangeHandler}
+                                    />
+                            }
+                        </div>
+                        <div className={componentClasses.filtersWrapper}>
+                            <SortSelect />
+                        </div>
                         {Array.isArray(items.sub_categories) ?
                             <div className={componentClasses.itemsWrapper}>
                                 {items.sub_categories.map((p, i) => (

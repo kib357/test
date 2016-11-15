@@ -8,6 +8,10 @@ const styles = {
     hidden: {
         overflow: 'hidden',
         height: 0,
+        whiteSpace: 'nowrap',
+    },
+    arrow: {
+        borderColor: '#ffcd4b transparent transparent transparent',
     },
 };
 
@@ -34,7 +38,7 @@ class CurrentCity extends Component {
         if (s == null) {
             return;
         }
-        const selectWidth = s.offsetWidth + 8;
+        const selectWidth = s.offsetWidth + 24;
         if (selectWidth !== this.state.selectWidth) {
             this.setState({ selectWidth });
         }
@@ -47,15 +51,13 @@ class CurrentCity extends Component {
 
     render() {
         const {list = [], currentId } = this.props;
-        const selectStyle = { width: this.state.selectWidth };
         const currentItem = list.find(i => i.id === currentId) || list[0];
         return (
-            <div className={selectClasses.wrapper} style={styles.wrapper}>
+            <div className={selectClasses.wrapper} style={Object.assign({}, styles.wrapper, { width: this.state.selectWidth })}>
                 <select
                     value={currentId}
                     onChange={this.selectChangeHandler}
                     className={selectClasses.element + ' ' + (this.props.selectClassName || '')}
-                    style={selectStyle}
                     >
                     {
                         list.map((c, i) => (
@@ -63,7 +65,7 @@ class CurrentCity extends Component {
                         ))
                     }
                 </select>
-                <div className={selectClasses.arrow}></div>
+                <div className={selectClasses.arrow} style={styles.arrow}></div>
                 <div style={styles.hidden}>
                     <span ref="span" className={(this.props.selectClassName || '')}>{currentItem.name}</span>
                 </div>

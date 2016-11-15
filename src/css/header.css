@@ -70,11 +70,14 @@
 
 .logoAndPhone > div {
     flex: 0 0 50%;
-    padding: 10px;
+}
+
+.logoAndPhone > div > a {
+    display: block;
+    margin: 10px;
 }
 
 .logo a {
-    display: block;
     height: 40px;
 }
 

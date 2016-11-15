@@ -83,3 +83,8 @@ export const openProduct = (path) => {
         history.push(`/${city.uri_name}/product/${path}`);
     };
 };
+
+export const selectGenericProduct = (id) => ({
+    type: 'CATALOG_SELECT_GENERIC_PRODUCT',
+    id,
+});

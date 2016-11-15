@@ -8,6 +8,7 @@ const catalogInitialState = {
     error: null,
     page: 0,
     pageSize: 10,
+    genericProductId: '',
 };
 export default function categoriesMenu(state = catalogInitialState, action) {
     switch (action.type) {
@@ -39,6 +40,9 @@ export default function categoriesMenu(state = catalogInitialState, action) {
                 newState.items.products = [...state.items.products, ...action.data.products];
             }
             return Object.assign({}, catalogInitialState, newState);
+        }
+        case 'CATALOG_SELECT_GENERIC_PRODUCT': {
+            return Object.assign({}, state, { genericProductId: action.id });
         }
         case 'NAV_OPEN_PAGE':
             return Object.assign({}, catalogInitialState);

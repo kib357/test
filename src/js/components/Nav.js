@@ -4,6 +4,7 @@ import menuIcon from '../../../public/img/menu.svg';
 import searchIcon from '../../../public/img/search.svg';
 import phoneIcon from '../../../public/img/phone.svg';
 import cartIcon from '../../../public/img/cart.svg';
+import cn from 'classnames';
 
 const items = [
     { name: 'Каталог', icon: menuIcon, value: 'categories' },
@@ -12,7 +13,7 @@ const items = [
     { name: 'Корзина', icon: cartIcon, value: 'cart' },
 ];
 
-const Nav = ({menu, toggleMenu}) => {
+const Nav = ({menu, min, toggleMenu}) => {
     return (
         <div className={navClasses.wrapper}>
             {
@@ -23,7 +24,7 @@ const Nav = ({menu, toggleMenu}) => {
                         className={e.value === menu ? navClasses.active : ''}
                         >
                         <img src={e.icon} alt={e.value} />
-                        <span>{e.name}</span>
+                        <span className={min ? navClasses.hideTitle : ''}>{e.name}</span>
                     </div>
                 ))
             }

@@ -68,7 +68,7 @@ class header extends Component {
                         <a href="tel:88003335577">8 800 333-55-77</a>
                     </div>
                 </div>
-                <NavContainer />
+                <NavContainer min={this.state.min && !menu} />
                 {menu && <NavMenuContainer />}
             </div>
         );
