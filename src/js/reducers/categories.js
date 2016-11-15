@@ -1,4 +1,4 @@
-export default function (state = { byParent: {}, byId: { '_0': { id: 0, uri_name: '/' } } }, action) {
+export default function (state = { byParent: {}, byId: { '_0': { id: 0, name: 'Каталог', uri_name: '/' } } }, action) {
     switch (action.type) {
         case 'SUBCATEGORIES_FETCH_REQUEST': {
             const byParent = Object.assign({}, state.byParent);

@@ -15,6 +15,7 @@ class CategoriesMenu extends Component {
         super(props);
         this.state = { back: false, stack: [] };
         this.categoryClickHandler = this._categoryClickHandler.bind(this);
+        this.closeClickHandler = this._closeClickHandler.bind(this);
     }
 
     componentDidMount() {
@@ -51,6 +52,10 @@ class CategoriesMenu extends Component {
         }
     }
 
+    _closeClickHandler() {
+        this.props.toggleMenu();
+    }
+
     stopPropagation(e) {
         e.stopPropagation();
     }
@@ -71,7 +76,12 @@ class CategoriesMenu extends Component {
                             key={i}
                             className={componentClasses.menu + (parentCategories.indexOf(e.id) >= 0 || (e.id === current.id && !this.state.hide) ? ' ' + componentClasses.menuShow : '')}
                             >
-                            <CategoriesList category={e} items={hItems[i]} categoryClickHandler={this.categoryClickHandler} />
+                            <CategoriesList
+                                category={e}
+                                items={hItems[i]}
+                                onCategoryClick={this.categoryClickHandler}
+                                onCloseClick={this.closeClickHandler}
+                                />
                         </div>
                     ))
                 }

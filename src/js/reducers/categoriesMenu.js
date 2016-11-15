@@ -1,4 +1,8 @@
-const categoriesMenuInitialState = { current: { id: 0 }, parentCategories: [], openedCategories: [{ id: 0 }] };
+const categoriesMenuInitialState = {
+    current: { id: 0, name: 'Каталог' },
+    parentCategories: [],
+    openedCategories: [{ id: 0, name: 'Каталог' }],
+};
 export default function categoriesMenu(state = categoriesMenuInitialState, action) {
     switch (action.type) {
         case 'CATEGORIES_MENU_SELECT': {

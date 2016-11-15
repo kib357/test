@@ -1,23 +1,27 @@
 import React from 'react';
 import backIcon from '../../../public/img/back.svg';
 import arrowIcon from '../../../public/img/chevron_right.svg';
+import clearIcon from '../../../public/img/clear.svg';
 import navListClasses from '../../css/navList.css';
 import Loader from '../components/Loader';
 
-const CategoriesList = ({category, items, categoryClickHandler}) => {
+const CategoriesList = ({category, items, onCategoryClick, onCloseClick}) => {
     return (
         <div>
             <Loader position="absolute" hide={items != null} />
-            {items != null && (category.id !== 0) &&
+            {items != null &&
                 <div className={navListClasses.listHeader}>
-                    <a
-                        onTouchTap={categoryClickHandler}
+                    {category.id !== 0 && <a
+                        onTouchTap={onCategoryClick}
                         data-back={true}
                         data-cat-id={category.parent_id}
                         >
                         <img src={backIcon} />
-                    </a>
+                    </a>}
                     <span>{category.name}</span>
+                    {category.id === 0 && <a onTouchTap={onCloseClick}>
+                        <img src={clearIcon} />
+                    </a>}
                 </div>
             }
             {items != null &&
@@ -33,7 +37,7 @@ const CategoriesList = ({category, items, categoryClickHandler}) => {
                             items.map((e, i) => (
                                 <li key={i}>
                                     <a
-                                        onTouchTap={categoryClickHandler}
+                                        onTouchTap={onCategoryClick}
                                         data-cat-id={e.id}
                                         data-leaf={e.is_leaf_category}
                                         >

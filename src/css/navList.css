@@ -1,6 +1,7 @@
 .listHeader {
     display: flex;
     align-items: center;
+    min-height: 54px;
     margin: 0;
     padding: 0;
     color: rgba(0,0,0,.87);
@@ -10,10 +11,13 @@
 }
 
 .listHeader a img {
-    padding: 16px;
+    padding: 16px 16px;
 }
 
 .listHeader span {
+    flex: 2 0;
+    display: block;
+    padding: 0 8px;
     text-transform: uppercase;
 }
 

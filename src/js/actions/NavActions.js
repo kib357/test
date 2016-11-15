@@ -4,7 +4,10 @@ import { selectCity } from './CitiesActions';
 const absUrlReg = new RegExp('^(?:[a-z]+:)?//', 'i');
 
 export const toggleMenu = (e) => {
-    const menu = e.currentTarget.getAttribute('data-menu');
+    let menu = '';
+    if (e && e.currentTarget) {
+        menu = e.currentTarget.getAttribute('data-menu');
+    }
     return {
         type: 'NAV_TOGGLE_MENU',
         menu,

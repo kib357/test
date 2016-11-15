@@ -78,7 +78,7 @@ class Catalog extends Component {
                         {category.name &&
                             <div className={componentClasses.header}>
                                 <h1>{category.name}</h1>
-                                {!Array.isArray(items.sub_categories) && items.total && <span>{items.total}</span>}
+                                {/*!Array.isArray(items.sub_categories) && items.total && <span>{items.total}</span>*/}
                             </div>
                         }
                         {/*Search results*/}
@@ -89,18 +89,29 @@ class Catalog extends Component {
                             :
                             null
                         }
-                        <div className={componentClasses.genericProductWrapper}>
-                            {Array.isArray(items.generic_products) &&
-                                <GenericProducts
-                                    products={items.generic_products}
-                                    value={genericProductId}
-                                    onChange={this.generictProductChangeHandler}
-                                    />
-                            }
-                        </div>
-                        <div className={componentClasses.filtersWrapper}>
-                            <SortSelect />
-                        </div>
+                        {!Array.isArray(items.sub_categories) &&
+                            <div>
+                                <div className={componentClasses.genericProductWrapper}>
+                                    {Array.isArray(items.generic_products) &&
+                                        <GenericProducts
+                                            products={items.generic_products}
+                                            value={genericProductId}
+                                            total={items.total}
+                                            onChange={this.generictProductChangeHandler}
+                                            />
+                                    }
+                                </div>
+                                <button
+                                    type="button"
+                                    className={formsClasses.btn + ' ' + componentClasses.filtersBtn}
+                                    >
+                                    Фильтр
+                                </button>
+                                <div className={componentClasses.sortWrapper}>
+                                    <SortSelect />
+                                </div>
+                            </div>
+                        }
                         {Array.isArray(items.sub_categories) ?
                             <div className={componentClasses.itemsWrapper}>
                                 {items.sub_categories.map((p, i) => (

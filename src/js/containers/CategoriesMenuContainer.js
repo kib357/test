@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as CategoriesActions from '../actions/CategoriesActions';
+import { toggleMenu } from '../actions/NavActions';
 import CategoriesMenu from '../components/CategoriesMenu';
 
 const CategoriesMenuContainer = connect(
@@ -21,7 +22,7 @@ const CategoriesMenuContainer = connect(
             error: (typeof items === 'string' ? items : null),
         };
     },
-    dispatch => (bindActionCreators(CategoriesActions, dispatch))
+    dispatch => (bindActionCreators(Object.assign({ toggleMenu }, CategoriesActions), dispatch))
 )(CategoriesMenu);
 
 export default CategoriesMenuContainer;
