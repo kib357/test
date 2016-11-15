@@ -2,11 +2,13 @@ import React from 'react';
 import backIcon from '../../../public/img/back.svg';
 import arrowIcon from '../../../public/img/chevron_right.svg';
 import navListClasses from '../../css/navList.css';
+import Loader from '../components/Loader';
 
 const CategoriesList = ({category, items, categoryClickHandler}) => {
     return (
         <div>
-            {category.id !== 0 &&
+            <Loader position="absolute" hide={items != null} />
+            {items != null && (category.id !== 0) &&
                 <div className={navListClasses.listHeader}>
                     <a
                         onTouchTap={categoryClickHandler}
@@ -18,7 +20,7 @@ const CategoriesList = ({category, items, categoryClickHandler}) => {
                     <span>{category.name}</span>
                 </div>
             }
-            {items &&
+            {items != null &&
                 <ul className={navListClasses.list}>
                     {
                         items.length === 0 ?

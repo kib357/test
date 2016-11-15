@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Loader from '../components/Loader';
 import componentClasses from '../../css/categoriesMenu.css';
+import backIcon from '../../../public/img/back.svg';
 import CategoriesList from './CategoriesList';
 
 const styles = {
@@ -64,6 +64,7 @@ class CategoriesMenu extends Component {
         }
         return (
             <div className={componentClasses.wrapper} onTouchTap={this.stopPropagation}>
+                <img src={backIcon} style={{ display: 'none' }} />
                 {
                     (openedCategories || []).map((e, i) => (
                         <div
