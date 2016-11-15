@@ -23,7 +23,9 @@ const CategoriesList = ({category, items, categoryClickHandler}) => {
                     {
                         items.length === 0 ?
                             <li className={navListClasses.emptyLi}>
-                                <span>В этой категории ничего нет</span>
+                                <div>
+                                    <span>В этой категории ничего нет</span>
+                                </div>
                             </li>
                             :
                             items.map((e, i) => (

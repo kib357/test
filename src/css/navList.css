@@ -37,6 +37,11 @@
     user-select: none;
 }
 
+.list li > div {
+    padding: 0 9px;
+    text-align: center;
+}
+
 .list li:last-child {
     border-bottom: none;
 }
