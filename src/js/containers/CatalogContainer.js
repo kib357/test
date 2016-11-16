@@ -8,7 +8,7 @@ const CatalogContainer = connect(
     state => {
         const cState = state.catalog;
         return Object.assign({}, cState, {
-            hasPages: cState.items != null && cState.items.total > ((cState.page + 1) * cState.pageSize),
+            hasPages: cState.items != null && cState.items.products != null && cState.items.total > ((cState.page + 1) * cState.pageSize),
             fetching: cState.fetchingCategory || cState.fetchingItems,
         });
     },

@@ -39,7 +39,7 @@ class Catalog extends Component {
             }
             return;
         }
-        if (!items && !fetchingItems && !error) {
+        if ((!items || !items.products) && !fetchingItems && !error) {
             return fetchItems();
         }
     }
@@ -93,28 +93,36 @@ class Catalog extends Component {
                         }
                         {!Array.isArray(items.sub_categories) &&
                             <div>
-                                <div className={componentClasses.genericProductWrapper}>
-                                    {Array.isArray(items.generic_products) &&
+                                {Array.isArray(items.generic_products) && items.generic_products.length > 1 &&
+                                    <div className={componentClasses.genericProductWrapper}>
                                         <GenericProducts
                                             products={items.generic_products}
                                             value={genericProductId}
                                             total={items.total}
                                             onChange={this.generictProductChangeHandler}
                                             />
-                                    }
-                                </div>
-                                <button
-                                    type="button"
-                                    onTouchTap={this.props.toggleFilters}
-                                    className={formsClasses.btn + ' ' + componentClasses.filtersBtn}
-                                    >
-                                    <img src={filterIcon} />
-                                    Фильтр
-                                </button>
+                                    </div>
+                                }
+                                {Array.isArray(items.options) && items.options.length > 0 &&
+                                    <div>
+                                        <button
+                                            type="button"
+                                            onTouchTap={this.props.toggleFilters}
+                                            className={formsClasses.btn + ' ' + componentClasses.filtersBtn}
+                                            >
+                                            <img src={filterIcon} />
+                                            Фильтр
+                                    </button>
+                                        <Filters
+                                            show={this.props.showFilters}
+                                            toggle={this.props.toggleFilters}
+                                            filters={items.options}
+                                            />
+                                    </div>
+                                }
                                 <div className={componentClasses.sortWrapper}>
                                     <SortSelect />
                                 </div>
-                                <Filters show={this.props.showFilters} toggle={this.props.toggleFilters} />
                             </div>
                         }
                         {Array.isArray(items.sub_categories) ?

@@ -23,7 +23,13 @@ export default function categoriesMenu(state = catalogInitialState, action) {
 
         //Products
         case 'CATALOG_ITEMS_FETCH_REQUEST': {
-            const newState = { category: state.category, fetchingItems: true, page: action.page };
+            const newState = {
+                category: state.category,
+                genericProductId: state.genericProductId,
+                fetchingItems: true,
+                page: action.page,
+                items: state.items,
+            };
             if (action.page !== 0) {
                 newState.items = state.items;
             }
@@ -33,17 +39,19 @@ export default function categoriesMenu(state = catalogInitialState, action) {
             return Object.assign({}, catalogInitialState, { error: action.error });
         case 'CATALOG_ITEMS_FETCH_RESPONSE': {
             if (action.page !== state.page) { return state }
-            const newState = { category: state.category, page: action.page };
-            if (action.page === 0) {
+            const newState = { category: state.category, genericProductId: state.genericProductId, page: action.page };
+            if (state.items == null) {
                 newState.items = action.data;
             } else {
                 newState.items = Object.assign({}, state.items);
-                newState.items.products = [...state.items.products, ...action.data.products];
+                newState.items.products = [...(state.items.products || []), ...action.data.products];
+                newState.items.options = action.data.options;
+                newState.items.total = action.data.total;
             }
             return Object.assign({}, catalogInitialState, newState);
         }
         case 'CATALOG_SELECT_GENERIC_PRODUCT': {
-            return Object.assign({}, state, { genericProductId: action.id });
+            return Object.assign({}, state, { genericProductId: action.id, items: Object.assign({}, state.items, { products: null, options: null }) });
         }
         case 'CATALOG_TOGGLE_FILTERS':
             return Object.assign({}, state, { showFilters: !state.showFilters });
