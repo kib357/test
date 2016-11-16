@@ -9,6 +9,7 @@ const catalogInitialState = {
     page: 0,
     pageSize: 10,
     genericProductId: '',
+    showFilters: false,
 };
 export default function categoriesMenu(state = catalogInitialState, action) {
     switch (action.type) {
@@ -44,6 +45,8 @@ export default function categoriesMenu(state = catalogInitialState, action) {
         case 'CATALOG_SELECT_GENERIC_PRODUCT': {
             return Object.assign({}, state, { genericProductId: action.id });
         }
+        case 'CATALOG_TOGGLE_FILTERS':
+            return Object.assign({}, state, { showFilters: !state.showFilters });
         case 'NAV_OPEN_PAGE':
             return Object.assign({}, catalogInitialState);
         default:

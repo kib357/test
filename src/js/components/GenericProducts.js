@@ -10,10 +10,10 @@ const GenericProducts = ({products, value, total, onChange}) => {
                 style={{ width: '100%' }}
                 className={selectClasses.element}
                 >
-                <option key={-1} value="">{`Все товары (${total})`}</option>
+                <option key={-1} value="">{`Все товары – ${total}`}</option>
                 {
                     products.map((p, i) => (
-                        <option key={i} value={p.id}>{`${p.name} (${p.doc_count})`}</option>
+                        <option key={i} value={p.id}>{`${p.name} – ${p.doc_count}`}</option>
                     ))
                 }
             </select>

@@ -88,3 +88,7 @@ export const selectGenericProduct = (id) => ({
     type: 'CATALOG_SELECT_GENERIC_PRODUCT',
     id,
 });
+
+export const toggleFilters = () => ({
+    type: 'CATALOG_TOGGLE_FILTERS',
+});

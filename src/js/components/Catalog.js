@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import Loader from './Loader';
 import componentClasses from '../../css/catalog.css';
 import formsClasses from '../../css/forms.css';
+import filterIcon from '../../../public/img/filter.svg';
 import ProductCard from './ProductCard';
 import CategoryCard from './CategoryCard';
 import Breadcrumbs from './Breadcrumbs';
+import Filters from './Filters';
 import GenericProducts from './GenericProducts';
 import SortSelect from './SortSelect';
 import ScrollButton from './ScrollButton';
@@ -103,13 +105,16 @@ class Catalog extends Component {
                                 </div>
                                 <button
                                     type="button"
+                                    onTouchTap={this.props.toggleFilters}
                                     className={formsClasses.btn + ' ' + componentClasses.filtersBtn}
                                     >
+                                    <img src={filterIcon} />
                                     Фильтр
                                 </button>
                                 <div className={componentClasses.sortWrapper}>
                                     <SortSelect />
                                 </div>
+                                <Filters show={this.props.showFilters} toggle={this.props.toggleFilters} />
                             </div>
                         }
                         {Array.isArray(items.sub_categories) ?

@@ -41,11 +41,18 @@
 }
 
 .filtersBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 8px !important;
     height: 36px;
     width: 100%;
     border: 1px solid rgba(0,0,0,.12);
     box-shadow: none;
+}
+
+.filtersBtn img {
+    margin-right: 7px;
 }
 
 .sortWrapper {
