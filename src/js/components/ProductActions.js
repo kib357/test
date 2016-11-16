@@ -18,7 +18,7 @@ class ProductActions extends Component {
     }
 
     _cutCount(_count) {
-        const {countInPallet, stock, units = [], unitsIndex} = this.props;
+        const {countInPallet, stock = 1, units = [], unitsIndex} = this.props;
         const isPalette = (units[unitsIndex] || {}).id === 'PAL';
         const max = Math.ceil(isPalette ? stock / countInPallet : stock);
         return Math.min(max, _count);
@@ -55,7 +55,7 @@ class ProductActions extends Component {
     }
 
     render() {
-        const {units = [], unitsIndex} = this.props;
+        const {units = [], unitsIndex, stock} = this.props;
         const {price} = units[unitsIndex] || {};
         const {count} = this.state;
         if (!price) {
@@ -90,39 +90,45 @@ class ProductActions extends Component {
                         ))}
                     </div>
                 </div>
-                <div className={componentClasses.actions}>
-                    <button
-                        type="button"
-                        className={formsClasses.btn + ' ' + componentClasses.countBtn}
-                        onTouchTap={this.countDecHandler}
-                        >
-                        <img src={removeIcon} />
-                    </button>
-                    <input
-                        type="number"
-                        pattern="\d*"
-                        value={count}
-                        onChange={this.countChangeHandler}
-                        onBlur={this.countInputBlurHandler}
-                        className={formsClasses.textInput + ' ' + componentClasses.countInput}
-                        />
-                    <button
-                        type="button"
-                        className={formsClasses.btn + ' ' + componentClasses.countBtn}
-                        onTouchTap={this.countIncHandler}
-                        >
-                        <img src={addIcon} />
-                    </button>
-                    <div className={componentClasses.byBtnWrapper}>
-                        <button
-                            onTouchTap={this.byClickHandler}
-                            type="button"
-                            className={formsClasses.btn + ' ' + componentClasses.byBtn}
-                            >
-                            купить
-                        </button>
+                {(!stock || stock < 1) ?
+                    <div className={componentClasses.actions}>
+                        <span>Нет в наличии</span>
                     </div>
-                </div>
+                    :
+                    <div className={componentClasses.actions}>
+                        <button
+                            type="button"
+                            className={formsClasses.btn + ' ' + componentClasses.countBtn}
+                            onTouchTap={this.countDecHandler}
+                            >
+                            <img src={removeIcon} />
+                        </button>
+                        <input
+                            type="number"
+                            pattern="\d*"
+                            value={count}
+                            onChange={this.countChangeHandler}
+                            onBlur={this.countInputBlurHandler}
+                            className={formsClasses.textInput + ' ' + componentClasses.countInput}
+                            />
+                        <button
+                            type="button"
+                            className={formsClasses.btn + ' ' + componentClasses.countBtn}
+                            onTouchTap={this.countIncHandler}
+                            >
+                            <img src={addIcon} />
+                        </button>
+                        <div className={componentClasses.byBtnWrapper}>
+                            <button
+                                onTouchTap={this.byClickHandler}
+                                type="button"
+                                className={formsClasses.btn + ' ' + componentClasses.byBtn}
+                                >
+                                купить
+                        </button>
+                        </div>
+                    </div>
+                }
             </div>
         );
     }
