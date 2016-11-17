@@ -66,7 +66,21 @@ class Catalog extends Component {
     }
 
     render() {
-        const {items, category, genericProductId, error, page, fetching, hasPages, fetchNextPage} = this.props;
+        const {
+            items,
+            category,
+            filtersDraft,
+            filtersOpened,
+            genericProductId,
+            error,
+            page,
+            fetching,
+            hasPages,
+            fetchNextPage,
+            changeFilters,
+            toggleFilters,
+            applyFilters,
+        } = this.props;
         return (
             <div className={componentClasses.wrapper}>
                 {items &&
@@ -107,16 +121,19 @@ class Catalog extends Component {
                                     <div>
                                         <button
                                             type="button"
-                                            onTouchTap={this.props.toggleFilters}
+                                            onTouchTap={toggleFilters}
                                             className={formsClasses.btn + ' ' + componentClasses.filtersBtn}
                                             >
                                             <img src={filterIcon} />
                                             Фильтр
                                     </button>
                                         <Filters
-                                            show={this.props.showFilters}
-                                            toggle={this.props.toggleFilters}
+                                            show={filtersOpened}
+                                            toggle={toggleFilters}
                                             filters={items.options}
+                                            value={filtersDraft}
+                                            onChange={changeFilters}
+                                            apply={applyFilters}
                                             />
                                     </div>
                                 }

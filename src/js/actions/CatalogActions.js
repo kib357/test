@@ -50,12 +50,14 @@ export const fetchItems = (page = 0) => {
         const pageParams = `&from=${pageSize * page}&size=${pageSize}`;
         const gpId = state.catalog.genericProductId || '';
         const gpIdParam = gpId && ('&generic_id=' + gpId);
+        const filters = state.catalog.filters;
+        const filtersParam = filters.length > 0 ? `&options_ids[]=${filters.join('|')}` : '';
         const phraseParam = category.phrase ? `&phrase=${encodeURIComponent(category.phrase)}` : '';
         console.debug('[fetchItems] category:', category);
         const uri = (category.id === '-1' || gpId) ?
-            `${CATALOG_API_URI}/generic_products/${category.generic_id}/products/?city_id=${cityId}${phraseParam}${pageParams}${gpIdParam}`
+            `${CATALOG_API_URI}/generic_products/${category.generic_id}/products/?city_id=${cityId}${phraseParam}${pageParams}${gpIdParam}${filtersParam}`
             :
-            `${CATALOG_API_URI}/categories/${category.id}/products/?city_id=${cityId}${pageParams}`;
+            `${CATALOG_API_URI}/categories/${category.id}/products/?city_id=${cityId}${pageParams}${filtersParam}`;
         dispatch({
             type: 'CATALOG_ITEMS_FETCH',
             $fetch: uri,
@@ -63,6 +65,7 @@ export const fetchItems = (page = 0) => {
         });
     };
 };
+// options_ids[]=27519|27526
 // http://catalog-api.sdvor.com/generic_products/159/products/?category_id=216&city_id=1000&generic_id=159
 // http://catalog-api.sdvor.com/generic_products/262/products/?city_id=7000&generic_id=262&phrase=%D0%BA%D0%B8%D1%80%D0%BF
 
@@ -96,4 +99,13 @@ export const selectGenericProduct = (id) => ({
 
 export const toggleFilters = () => ({
     type: 'CATALOG_TOGGLE_FILTERS',
+});
+
+export const changeFilters = (filters) => ({
+    type: 'CATALOG_CHANGE_FILTERS',
+    filters,
+});
+
+export const applyFilters = () => ({
+    type: 'CATALOG_APPLY_FILTERS',
 });

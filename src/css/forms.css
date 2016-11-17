@@ -13,6 +13,20 @@
     text-transform: uppercase;
 }
 
+.btnFlat {
+    display: inline-block;
+    height: 32px;
+    margin: 0 0 0 8px;
+    padding: 0 7px;
+    min-width: 88px;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    outline: none !important;
+    font-size: .8rem;
+    text-transform: uppercase;
+}
+
 .btn:first-of-type {
     margin: 0;
 }

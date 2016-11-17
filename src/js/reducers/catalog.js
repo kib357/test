@@ -9,7 +9,9 @@ const catalogInitialState = {
     page: 0,
     pageSize: 10,
     genericProductId: '',
-    showFilters: false,
+    filters: [],
+    filtersDraft: [],
+    filtersOpened: false,
 };
 export default function categoriesMenu(state = catalogInitialState, action) {
     switch (action.type) {
@@ -26,6 +28,7 @@ export default function categoriesMenu(state = catalogInitialState, action) {
             const newState = {
                 category: state.category,
                 genericProductId: state.genericProductId,
+                filters: state.filters,
                 fetchingItems: true,
                 page: action.page,
                 items: state.items,
@@ -39,7 +42,7 @@ export default function categoriesMenu(state = catalogInitialState, action) {
             return Object.assign({}, catalogInitialState, { error: action.error });
         case 'CATALOG_ITEMS_FETCH_RESPONSE': {
             if (action.page !== state.page) { return state }
-            const newState = { category: state.category, genericProductId: state.genericProductId, page: action.page };
+            const newState = { category: state.category, genericProductId: state.genericProductId, filters: state.filters, page: action.page };
             if (state.items == null) {
                 newState.items = action.data;
             } else {
@@ -51,10 +54,17 @@ export default function categoriesMenu(state = catalogInitialState, action) {
             return Object.assign({}, catalogInitialState, newState);
         }
         case 'CATALOG_SELECT_GENERIC_PRODUCT': {
-            return Object.assign({}, state, { genericProductId: action.id, items: Object.assign({}, state.items, { products: null, options: null }) });
+            return Object.assign({}, state, { genericProductId: action.id, filters: [], items: Object.assign({}, state.items, { products: null, options: null }) });
         }
+        case 'CATALOG_CHANGE_FILTERS':
+            return Object.assign({}, state, { filtersDraft: (action.filters || []).slice() });
+        case 'CATALOG_APPLY_FILTERS':
+            return Object.assign({}, state, {
+                filters: state.filtersDraft.slice(),
+                items: Object.assign({}, state.items, { products: null }),
+            });
         case 'CATALOG_TOGGLE_FILTERS':
-            return Object.assign({}, state, { showFilters: !state.showFilters });
+            return Object.assign({}, state, { filtersOpened: !state.filtersOpened, filtersDraft: state.filters.slice() });
         case 'NAV_OPEN_PAGE':
             return Object.assign({}, catalogInitialState);
         default:
