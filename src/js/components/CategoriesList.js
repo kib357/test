@@ -1,7 +1,5 @@
 import React from 'react';
-import backIcon from '../../../public/img/back.svg';
-import arrowIcon from '../../../public/img/chevron_right.svg';
-import clearIcon from '../../../public/img/clear.svg';
+import SvgIcon from './SvgIcon';
 import navListClasses from '../../css/navList.css';
 import Loader from '../components/Loader';
 
@@ -16,11 +14,11 @@ const CategoriesList = ({category, items, onCategoryClick, onCloseClick}) => {
                         data-back={true}
                         data-cat-id={category.parent_id}
                         >
-                        <img src={backIcon} />
+                        <SvgIcon name="arrow_back" width="18" height="18" />
                     </a>}
                     <span>{category.name}</span>
                     {category.id === 0 && <a onTouchTap={onCloseClick}>
-                        <img src={clearIcon} />
+                        <SvgIcon name="clear" width="18" height="18" />
                     </a>}
                 </div>
             }
@@ -42,7 +40,7 @@ const CategoriesList = ({category, items, onCategoryClick, onCloseClick}) => {
                                         data-leaf={e.is_leaf_category}
                                         >
                                         <span>{e.name}</span>
-                                        {e.is_leaf_category ? null : <img src={arrowIcon} />}
+                                        {e.is_leaf_category ? null : <SvgIcon name="chevron_right" width="18" height="18" />}
                                     </a>
                                 </li>
                             ))
