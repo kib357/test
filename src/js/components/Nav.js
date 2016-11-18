@@ -1,15 +1,12 @@
 import React from 'react';
 import navClasses from '../../css/nav.css';
-import menuIcon from '../../../public/img/menu.svg';
-import searchIcon from '../../../public/img/search.svg';
-import phoneIcon from '../../../public/img/phone.svg';
-import cartIcon from '../../../public/img/cart.svg';
+import SvgIcon from './SvgIcon';
 
 const items = [
-    { name: 'Каталог', icon: menuIcon, value: 'categories' },
-    { name: 'Поиск', icon: searchIcon, value: 'search' },
-    { name: 'Инфо', icon: phoneIcon, value: 'info' },
-    { name: 'Корзина', icon: cartIcon, value: 'cart' },
+    { name: 'Каталог', icon: 'menu', value: 'categories' },
+    { name: 'Поиск', icon: 'search', value: 'search' },
+    { name: 'Инфо', icon: 'phone', value: 'info' },
+    { name: 'Корзина', icon: 'shopping_cart', value: 'cart' },
 ];
 
 const Nav = ({menu, min, toggleMenu}) => {
@@ -22,7 +19,7 @@ const Nav = ({menu, min, toggleMenu}) => {
                         data-menu={e.value}
                         className={e.value === menu ? navClasses.active : ''}
                         >
-                        <img src={e.icon} alt={e.value} />
+                        <SvgIcon name={e.icon} fill="#424242" />
                         <span className={min ? navClasses.hideTitle : ''}>{e.name}</span>
                     </div>
                 ))

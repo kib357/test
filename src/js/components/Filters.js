@@ -1,6 +1,5 @@
 import React from 'react';
 import SvgIcon from './SvgIcon';
-import closeIcon from '../../../public/img/clear.svg';
 import componentClasses from '../../css/filters.css';
 import formsClasses from '../../css/forms.css';
 
@@ -27,7 +26,7 @@ const Filters = ({ value = [], filters, show, toggle, onChange, apply}) => {
         <div className={componentClasses.wrapper + ' ' + (show ? componentClasses.showWrapper : '')}>
             <div className={componentClasses.header}>
                 <span>Фильтр товаров</span>
-                <a onTouchTap={toggleWrapper}><img src={closeIcon} /></a>
+                <a onTouchTap={toggleWrapper}><SvgIcon name="close" /></a>
             </div>
             <div className={componentClasses.filters}>
                 <ul>

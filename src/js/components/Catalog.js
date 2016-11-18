@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Loader from './Loader';
 import componentClasses from '../../css/catalog.css';
 import formsClasses from '../../css/forms.css';
-import filterIcon from '../../../public/img/filter.svg';
+import SvgIcon from './SvgIcon';
 import ProductCard from './ProductCard';
 import CategoryCard from './CategoryCard';
 import Breadcrumbs from './Breadcrumbs';
@@ -124,8 +124,8 @@ class Catalog extends Component {
                                             onTouchTap={toggleFilters}
                                             className={formsClasses.btn + ' ' + componentClasses.filtersBtn}
                                             >
-                                            <img src={filterIcon} />
-                                            Фильтр
+                                            <SvgIcon name="filter_list" />
+                                            Уточнить условия
                                     </button>
                                         <Filters
                                             show={filtersOpened}
