@@ -2,12 +2,10 @@
     flex: 2 0;
     position: relative;
     min-height: 50px;
-    /*background-color: #fff;*/
 }
 
 .content {
     background-color: #fff;
-    transform: translateX(0);
 }
 
 .menu {
