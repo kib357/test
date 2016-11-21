@@ -66,6 +66,7 @@
 .logoAndPhone {
     display: flex;
     background-color: #fff;
+    min-height: 60px;
 }
 
 .logoAndPhone > div {
@@ -74,7 +75,7 @@
 
 .logoAndPhone > div > a {
     display: block;
-    margin: 10px;
+    padding: 10px;
 }
 
 .logo a {

@@ -9,6 +9,9 @@
 }
 
 .menu {
+    /*Fix for old android*/
+    padding-bottom: 40px;
+
     position: absolute;
     top: 0;
     bottom: 0;

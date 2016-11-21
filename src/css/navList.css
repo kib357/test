@@ -37,7 +37,7 @@
     display: flex;
     align-items: center;
     margin: 0;
-    padding: 0 9px;
+    padding: 16px 9px;
     user-select: none;
 }
 
@@ -54,14 +54,14 @@
     background-color: #efefef;
 }
 
-.list li img {
+.list li svg {
     width: 24px;
     height: 24px;
 }
 
 .list li span {
     flex: 2 0;
-    padding: 11px 0;
+    /*padding: 11px 0;*/
     font-weight: 600;
     width: 100%;
     color: #424242;

@@ -13,7 +13,7 @@ import '../../public/img/logo.png';
 //Image for 'about' page
 import '../../public/img/info_10_06_2016.jpg';
 
-// Mobile debug only
+// // Mobile debug only
 // window.onerror = function (message, url, lineNumber) {
 //     document.body.innerHTML = message;
 // };

@@ -11,6 +11,11 @@ const localPages = {
 const breadcrumbsItems = [{ path: '/', name: 'На главную' }];
 
 class StaticPage extends Component {
+    constructor(props) {
+        super(props);
+        this.backClickHandler = this._backClickHandler.bind(this);
+    }
+
     componentDidMount() {
         this._loadContentAndAddHadlers();
     }
@@ -37,12 +42,18 @@ class StaticPage extends Component {
         }
     }
 
+    _backClickHandler(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.props.openUri('/');
+    }
+
     render() {
         const {pageName, content, fetching, error} = this.props;
         const localPage = localPages[pageName];
         return (
             <div className={componentClasses.wrapper} ref="wrapper">
-                {pageName !== 'main' && <Breadcrumbs items={breadcrumbsItems} />}
+                {pageName !== 'main' && <Breadcrumbs items={breadcrumbsItems} onBackLinkClick={this.backClickHandler} />}
                 <div className={(localPage || {}).disableCardStyle ? componentClasses.simpleContent : componentClasses.content}>
                     {localPage ?
                         <div>

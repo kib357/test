@@ -5,7 +5,7 @@ export const fetchCities = () => {
     return (dispatch, getState) => {
         dispatch({
             type: 'CITIES_FETCH',
-            $fetch: [`${API_URI}/cities/`, {
+            $fetch: [`${API_URI}/cities/?format=json`, {
                 method: 'GET',
             }],
             $success: () => {

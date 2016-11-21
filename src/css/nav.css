@@ -25,7 +25,7 @@
 }
 
 .wrapper > div > span {
-    display: inline-block;
+    display: block;
     margin-top: 6px;
     font-size: .85rem;
     user-select: none;
