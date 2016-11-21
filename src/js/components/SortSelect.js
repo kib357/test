@@ -8,6 +8,10 @@ const styles = {
 };
 
 const SortSelect = ({value, onChange}) => {
+    const selectChangeHandler = (e) => {
+        const value = e.currentTarget.value;
+        onChange(value);
+    };
     return (
         <div style={styles.wrapper}>
             {/*<label htmlFor="catalog-sort-select" className={selectClasses.label}>
@@ -16,7 +20,7 @@ const SortSelect = ({value, onChange}) => {
             <div className={selectClasses.wrapper}>
                 <select
                     value={value}
-                    onChange={onChange}
+                    onChange={selectChangeHandler}
                     className={selectClasses.element}
                     id="catalog-sort-select"
                     >
@@ -24,10 +28,11 @@ const SortSelect = ({value, onChange}) => {
                     <option value="1">популярности</option>
                     <option value="2">увеличению цены</option>
                     <option value="3">уменьшению цены</option>*/}
-                    <option value="0">По названию</option>
-                    <option value="1">По популярности</option>
-                    <option value="2">По возрастанию цены</option>
-                    <option value="3">По уменьшению цены</option>
+                    <option value="default">По релевантности</option>
+                    <option value="name">По названию</option>
+                    <option value="popularity">По популярности</option>
+                    <option value="price">По возрастанию цены</option>
+                    <option value="priceDesc">По уменьшению цены</option>
                 </select>
                 <div className={selectClasses.arrow}></div>
             </div>

@@ -80,6 +80,9 @@ class Catalog extends Component {
             changeFilters,
             toggleFilters,
             applyFilters,
+            sortType,
+            selectSortType,
+
         } = this.props;
         return (
             <div className={componentClasses.wrapper}>
@@ -138,7 +141,7 @@ class Catalog extends Component {
                                     </div>
                                 }
                                 <div className={componentClasses.sortWrapper}>
-                                    <SortSelect />
+                                    <SortSelect value={sortType} onChange={selectSortType} />
                                 </div>
                             </div>
                         }

@@ -12,6 +12,7 @@ const catalogInitialState = {
     filters: [],
     filtersDraft: [],
     filtersOpened: false,
+    sortType: 'default',
 };
 export default function categoriesMenu(state = catalogInitialState, action) {
     switch (action.type) {
@@ -30,11 +31,15 @@ export default function categoriesMenu(state = catalogInitialState, action) {
                 genericProductId: state.genericProductId,
                 filters: state.filters,
                 fetchingItems: true,
+                sortType: state.sortType,
                 page: action.page,
                 items: state.items,
             };
             if (action.page !== 0) {
                 newState.items = state.items;
+            }
+            if (action.gpId) {
+                newState.genericProductId = action.gpId;
             }
             return Object.assign({}, catalogInitialState, newState);
         }
@@ -42,7 +47,7 @@ export default function categoriesMenu(state = catalogInitialState, action) {
             return Object.assign({}, catalogInitialState, { error: action.error });
         case 'CATALOG_ITEMS_FETCH_RESPONSE': {
             if (action.page !== state.page) { return state }
-            const newState = { category: state.category, genericProductId: state.genericProductId, filters: state.filters, page: action.page };
+            const newState = { category: state.category, genericProductId: state.genericProductId, filters: state.filters, sortType: state.sortType, page: action.page };
             if (state.items == null) {
                 newState.items = action.data;
             } else {
@@ -55,6 +60,9 @@ export default function categoriesMenu(state = catalogInitialState, action) {
         }
         case 'CATALOG_SELECT_GENERIC_PRODUCT': {
             return Object.assign({}, state, { genericProductId: action.id, filters: [], items: Object.assign({}, state.items, { products: null, options: null }) });
+        }
+        case 'CATALOG_SELECT_SORT_TYPE': {
+            return Object.assign({}, state, { sortType: action.data, items: Object.assign({}, state.items, { products: null, options: null }) });
         }
         case 'CATALOG_CHANGE_FILTERS':
             return Object.assign({}, state, { filtersDraft: (action.filters || []).slice() });
