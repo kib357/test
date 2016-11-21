@@ -62,8 +62,8 @@ class CategoriesMenu extends Component {
 
     render() {
         const {openedCategories, parentCategories, current, hItems, error} = this.props;
-        const slideStyle = {};
-        slideStyle['transform'] = `translateX(${this.state.back ? '-' : ''}100%)`;
+        // const slideStyle = {};
+        // slideStyle['transform'] = `translateX(${this.state.back ? '-' : ''}100%)`;
         if (error) {
             return <p style={styles.error}>Ошибка при загрузке категорий, пожалуйста обновите страницу.</p>;
         }
