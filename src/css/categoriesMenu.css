@@ -21,7 +21,7 @@
     overflow: auto;
     background-color: #fff;
     color: #000;
-    transition: transform 300ms ease-in-out 50ms;
+    transition: transform 300ms ease-in-out;
 }
 
 .menuShow {

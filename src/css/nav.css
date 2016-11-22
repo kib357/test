@@ -12,7 +12,7 @@
     padding: 10px;
     text-align: center;
     color: #424242;
-    cursor: pointer;
+    user-select: none;
 }
 
 .wrapper > div.active {
