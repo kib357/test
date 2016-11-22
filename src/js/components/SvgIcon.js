@@ -38,8 +38,8 @@ const icons = {
 
 const SvgIcon = ({ name, width = 24, height = 24, fill = 'rgba(0,0,0,1)', style }) => {
     const componentStyle = {
-        width,
-        height,
+        width: width + 'px',
+        height: height + 'px',
         fill,
     };
     return (

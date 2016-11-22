@@ -34,8 +34,8 @@
 }
 
 .list li a {
-    display: flex;
-    align-items: center;
+    position: relative;
+    display: block;
     margin: 0;
     padding: 16px 9px;
     user-select: none;
@@ -55,12 +55,16 @@
 }
 
 .list li svg {
+    position: absolute;
+    right: 7px;
+    top: 15px;
     width: 24px;
     height: 24px;
 }
 
 .list li span {
-    flex: 2 0;
+    display: block;
+    padding-right: 24px;
     /*padding: 11px 0;*/
     font-weight: 600;
     width: 100%;

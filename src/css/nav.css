@@ -31,6 +31,7 @@
     user-select: none;
     transition: all .2s linear;
     overflow: hidden;
+    user-select: none;
 }
 
 .hideTitle {

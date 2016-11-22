@@ -39,10 +39,13 @@ class CategoriesMenu extends Component {
     }
 
     _categoryClickHandler(e) {
+        e.preventDefault();
+        e.stopPropagation();
         const id = e.currentTarget.getAttribute('data-cat-id');
         const back = e.currentTarget.getAttribute('data-back');
         const isLeaf = e.currentTarget.getAttribute('data-leaf');
         if (isLeaf) {
+            console.log('LEAF!!!');
             this.props.openCategory(id);
         } else {
             const hide = true;

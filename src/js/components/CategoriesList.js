@@ -37,7 +37,7 @@ const CategoriesList = ({category, items, onCategoryClick, onCloseClick}) => {
                                     <a
                                         onTouchTap={onCategoryClick}
                                         data-cat-id={e.id}
-                                        data-leaf={e.is_leaf_category}
+                                        data-leaf={e.is_leaf_category ? true : ''}
                                         >
                                         <span>{e.name}</span>
                                         {e.is_leaf_category ? null : <SvgIcon name="chevron_right" width="18" height="18" />}
