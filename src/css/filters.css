@@ -37,6 +37,7 @@
 .filters {
     flex: 2 0;
     overflow: auto;
+    will-change: scroll-position;
 }
 
 .filters ul {

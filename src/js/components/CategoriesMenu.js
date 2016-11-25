@@ -48,8 +48,7 @@ class CategoriesMenu extends Component {
             console.log('LEAF!!!');
             this.props.openCategory(id);
         } else {
-            const hide = true;
-            this.setState({ back, hide }, () => {
+            this.setState({ back, hide: !back }, () => {
                 this.props.selectMenuCategory(id);
             });
         }
