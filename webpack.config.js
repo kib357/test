@@ -44,6 +44,9 @@ module.exports = (options = {}) => ({
         filename: 'app.js',
         publicPath: `${HOT_SERVER_URL}`,
     },
+    resolveLoader: {
+        moduleExtensions: ['-loader'],
+    },
     module: {
         loaders: [
             // First, run the linter.
